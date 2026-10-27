@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CallCenter.Dominio
 {
-    public class Class1
+    internal class EstadoIncidencia
     {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
     }
 }
