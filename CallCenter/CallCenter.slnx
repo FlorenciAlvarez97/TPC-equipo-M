@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="CallCenter.Datos/CallCenter.Datos.csproj" />
+  <Project Path="CallCenter.Dominio/CallCenter.Dominio.csproj" />
+  <Project Path="CallCenter.Negocio/CallCenter.Negocio.csproj" />
   <Project Path="CallCenter.Web/CallCenter.Web.csproj" />
 </Solution>
