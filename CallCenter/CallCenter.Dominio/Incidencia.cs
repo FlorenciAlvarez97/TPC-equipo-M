@@ -11,7 +11,7 @@ namespace CallCenter.Dominio
         public int Id { get; set; }
         public int Numero { get; set; }
         public DateTime FechaAlta { get; set; }
-        public DateTime FechaUltimaModificacion { get; set; }        
+        public DateTime? FechaUltimaModificacion { get; set; } //Esta fecha inicia vacia cuando es un alta       
         public string Descripcion {  get; set; }
         public Cliente cliente { get; set; }
         public TipoIncidencia Tipo {  get; set; }
