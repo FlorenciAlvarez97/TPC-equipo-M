@@ -48,7 +48,7 @@
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item"><a runat="server" href="~/Default.aspx" class="nav-link">Inicio</a></li>
-                        <li class="nav-item"><a runat="server" href="~/Clientes.aspx" class="nav-link">Clientes< </a></li>
+                        <li class="nav-item"><a runat="server" href="~/Clientes.aspx" class="nav-link">Clientes</a></li>
                         <li class="nav-item"><a runat="server" href="~/Incidencias.aspx" class="nav-link">Incidencias</a></li>
                         <li class="nav-item"><a runat="server" href="~/TiposIncidencia.aspx" class="nav-link">Tipos de incidencia</a></li>
                         <li class="nav-item"><a runat="server" href="~/Prioridades.aspx" class="nav-link">Prioridades</a></li>

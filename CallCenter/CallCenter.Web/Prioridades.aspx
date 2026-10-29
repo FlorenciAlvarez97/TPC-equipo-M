@@ -2,9 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Prioridades</h1>
     <p> </p>
-    <a> runat= "server"
-        href =~/Default.aspx
-        class= "btn btn-primary">
+    <a runat= "server" href =~/Default.aspx class= "btn btn-primary">
         volver al inicio
     </a>
 </asp:Content>
