@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Nuevo Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClientesFormulario.aspx.cs" Inherits="CallCenter.Web.ClienteFormulario" %>
+﻿<%@ Page Title="Nuevo Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClienteFormulario.aspx.cs" Inherits="CallCenter.Web.ClienteFormulario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Nuevo cliente</h1>
     <p class="text-muted"></p>
@@ -10,7 +10,7 @@
 
         <div class= "col-md-6 mb-3">
                 <asp:Label ID="lblApellido" runat="server" Text="Apellido" AssociatedControlID="txtApellido" CssClass="col-form-label" />
-                <asp:TextBox ID="txtAlpellido" runat="server" CssClass="form-control" />
+                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" />
         </div>
 
         <div class= "col-md-6 mb-3">
@@ -32,11 +32,12 @@
              <asp:CheckBox ID="chkActivo" runat="server" Text="Cliente Activo" Checked="true" />
 
         </div>
-    </div
+    </div>
     <div class="mt-3">
 
         <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Enabled="false" CausesValidation="false" />
-        <a runat="server" href="~/Clientes.aspx" class="btn btn-secondary" Cancelar/Volver al listado <a />
+        <a runat="server" href="~/Clientes.aspx" class="btn btn-secondary"> Cancelar </a>
+
     </div>
 
 
