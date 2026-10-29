@@ -123,6 +123,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="IncidenciaFormulario.aspx" />
     <Content Include="Incidencias.aspx" />
     <Content Include="Prioridades.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IncidenciaFormulario.aspx.cs">
+      <DependentUpon>IncidenciaFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IncidenciaFormulario.aspx.designer.cs">
+      <DependentUpon>IncidenciaFormulario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Incidencias.aspx.cs">
       <DependentUpon>Incidencias.aspx</DependentUpon>
