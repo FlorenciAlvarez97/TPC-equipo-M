@@ -125,6 +125,7 @@
     <Content Include="Global.asax" />
     <Content Include="IncidenciaFormulario.aspx" />
     <Content Include="Incidencias.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Prioridades.aspx" />
     <Content Include="PrioridadFormulario.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -247,6 +248,13 @@
     </Compile>
     <Compile Include="Incidencias.aspx.designer.cs">
       <DependentUpon>Incidencias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Prioridades.aspx.cs">
       <DependentUpon>Prioridades.aspx</DependentUpon>
