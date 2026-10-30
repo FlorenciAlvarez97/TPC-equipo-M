@@ -57,19 +57,6 @@
                 <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" Enabled="false" />
             </div>
 
-            <h3 class="h5">Resolver incidencia</h3>
-
-            <div class="mb-3">
-                <asp:Label ID="lblResolucion" runat="server" AssociatedControlID="txtResolucion" CssClass="form-label" Text="Información final de resolución" />
-                <asp:TextBox ID="txtResolucion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" />
-                
-                <p class="form-text"> Describí la respuesta o solución brindada al cliente</p>
-            </div>
-            
-            <div class="mb-4">
-                <asp:Button ID="btnResolver" runat="server" Text="Resolver" CssClass="btn btn-success" Enabled="false" />
-            </div>
-            
             <h3 class="h5">Cerrar incidencia</h3>
 
             <div class="mb-3">
@@ -78,9 +65,13 @@
                 
                 <p class="form-text"> Indicá el motivo del cierre </p>
             </div>
+
+            <div class="mb-4">
+                <asp:Button ID="btnResuelto" runat="server" Text="Resuelto" CssClass="btn btn-success" Enabled="false" />
+            </div>
             
             <div class="mb-4">
-                <asp:Button ID="btnCerrarIncidencia" runat="server" Text="Cerrar incidencia" CssClass="btn btn-danger" Enabled="false" /> 
+                <asp:Button ID="btnSinResolver" runat="server" Text="Sin Resolver" CssClass="btn btn-danger" Enabled="false" /> 
             </div>
 
             <div class="mb-3">

@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Prioridad" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="PrioridadFormulario.aspx.cs" Inherits="CallCenter.Web.PrioridadFormulario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-       <h1>Prioridad</h1>jkly
+       <h1>Prioridad</h1>
     <div class="row">
         <div class="col-md-6">
 
