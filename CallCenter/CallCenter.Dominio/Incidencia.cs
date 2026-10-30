@@ -13,6 +13,8 @@ namespace CallCenter.Dominio
         public DateTime FechaAlta { get; set; }
         public DateTime? FechaUltimaModificacion { get; set; } //Esta fecha inicia vacia cuando es un alta       
         public string Descripcion {  get; set; }
+        public string Resolucion { get; set; }
+        public string ComentarioCierre { get; set; }
         public Cliente cliente { get; set; }
         public TipoIncidencia Tipo {  get; set; }
         public Usuario UsuarioCreador { get; set; }
