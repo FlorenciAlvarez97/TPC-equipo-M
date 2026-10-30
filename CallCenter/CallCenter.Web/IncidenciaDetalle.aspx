@@ -1,4 +1,5 @@
-﻿<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+﻿<%@ Page Title="Detalle de incidencia" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="IncidenciaDetalle.aspx.cs" Inherits="CallCenter.Web.IncidenciaDetalle" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Detalle de incidencia</h1>
     <p> </p>
 
