@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Iniciar sesión" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="CallCenter.Web.Login" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-     <h1>Iniciar sesión</h1
+     <h1>Iniciar sesión</h1>
 
      <div class="row">
          <div class="col-md-6">
