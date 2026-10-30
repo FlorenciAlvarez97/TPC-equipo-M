@@ -186,6 +186,7 @@
     <Content Include="Site.Master" />
     <Content Include="TipoIncidenciaFormulario.aspx" />
     <Content Include="TiposIncidencia.aspx" />
+    <Content Include="UsuarioFormulario.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="TiposIncidencia.aspx.designer.cs">
       <DependentUpon>TiposIncidencia.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioFormulario.aspx.cs">
+      <DependentUpon>UsuarioFormulario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioFormulario.aspx.designer.cs">
+      <DependentUpon>UsuarioFormulario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

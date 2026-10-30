@@ -22,6 +22,10 @@
             <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-primary"> Ir a tipos de incidencia </a>
         </section>
 
+        <section class="col-md-4"><h2>Usuarios</h2><p> Consultar y administrar los usuarios del sistema</p>
+            <a runat="server" href="~/Usuarios.aspx" class="btn btn-primary"> Ir a usuarios </a>
+        </section>
+
     </div>
 </main>
 

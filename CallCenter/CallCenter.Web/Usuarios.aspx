@@ -4,6 +4,7 @@
     <p> </p>
 
     <div class="mb-3">
+        <a runat="server" href="~/UsuarioFormulario.aspx" class="btn btn-primary"> Nuevo usuario </a>
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
     </div>
 
