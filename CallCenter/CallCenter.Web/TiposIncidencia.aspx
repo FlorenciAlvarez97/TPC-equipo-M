@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="Tipos de incidencia" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TiposIncidencia.aspx.cs" Inherits="CallCenter.Web.TiposIncidencia" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Tipos de incidencia</h1>
-    <p> </p>
+    
+    <div class="mb-3">
+        <a runat="server" href="~/TipoIncidenciaFormulario.aspx" class="btn btn-primary">Nuevo tipo</a>
+    </div>
 
     <div class="mb-3">
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>

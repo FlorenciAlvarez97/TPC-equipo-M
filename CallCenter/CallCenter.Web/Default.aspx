@@ -7,31 +7,21 @@
 
     <div class="row">
         <section class="col-md-4"><h2>Clientes</h2> <p>Consultar los clientes y acceder a sus datos de contacto.</p>
-
-               <a runat="server"
-               href="~/Clientes.aspx"
-               class="btn btn-primary">
-                Ir a clientes
-            </a>
+               <a runat="server" href="~/Clientes.aspx" class="btn btn-primary"> Ir a clientes </a>
         </section>
 
         <section class="col-md-4"><h2>Incidencias</h2> <p>Acceder a los reclamos y a las pantallas de atención </p>
-
-            <a runat="server"
-               href="~/Incidencias.aspx"
-               class="btn btn-primary">
-                Ir a incidencias
-            </a>
+            <a runat="server" href="~/Incidencias.aspx" class="btn btn-primary"> Ir a incidencias </a>
         </section>
 
         <section class="col-md-4"><h2>Prioridades</h2><p> Sección donde mostraremos la lectura de prioridades desde la base de datos</p>
-
-            <a runat="server"
-               href="~/Prioridades.aspx"
-               class="btn btn-primary">
-                Ir a prioridades
-            </a>
+            <a runat="server" href="~/Prioridades.aspx" class="btn btn-primary"> Ir a prioridades </a>
         </section>
+
+        <section class="col-md-4"><h2>Tipos de incidencia</h2><p> Consultar y administrar los tipos de reclamos</p>
+            <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-primary"> Ir a  </a>
+        </section>
+
     </div>
 </main>
 
