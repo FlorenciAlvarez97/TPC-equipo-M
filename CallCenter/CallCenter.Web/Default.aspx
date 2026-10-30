@@ -19,7 +19,7 @@
         </section>
 
         <section class="col-md-4"><h2>Tipos de incidencia</h2><p> Consultar y administrar los tipos de reclamos</p>
-            <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-primary"> Ir a  </a>
+            <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-primary"> Ir a tipos de incidencia </a>
         </section>
 
     </div>
