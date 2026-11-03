@@ -50,6 +50,28 @@ namespace CallCenter.Datos
 
         }
 
+        public void SetearParametro(string nombre, object valor)
+        {
+            comando.Parameters.AddWithValue(nombre, valor ?? DBNull.Value);
+        }
+
+        public void ejecutarAccion()
+        {
+            conexion.Open();
+            comando.ExecuteNonQuery();
+        }
+
+        public object EjecutarEscalar()
+        {
+            conexion.Open();
+            return comando.ExecuteScalar();
+        }
+
+
+
+
+
+
         public void CerrarConexion()
         {
             try
