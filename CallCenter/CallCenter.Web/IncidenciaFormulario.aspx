@@ -55,7 +55,7 @@
 </div>
     <div class="mb-3">
         <a runat="server" href="~/IncidenciaFormulario.aspx" class="btn btn-primary"> Nueva Incidencia</a>
-        <a runat="server" href="~/Default.aspx" class="btn btn-secondary"> Volver al inicio</a> 
+        <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary"> Volver al inicio</a> 
 
     </div>
 
