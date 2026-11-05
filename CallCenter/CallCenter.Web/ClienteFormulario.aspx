@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Nuevo Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClienteFormulario.aspx.cs" Inherits="CallCenter.Web.ClienteFormulario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Nuevo cliente</h1>
+    <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
     <p class="text-muted"></p>
     <div class="row">
         <div class= "col-md-6 mb-3">
@@ -35,7 +36,7 @@
     </div>
     <div class="mt-3">
 
-        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Enabled="false" CausesValidation="false" />
+       <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" CausesValidation="false" />
         <a runat="server" href="~/Clientes.aspx" class="btn btn-secondary"> Cancelar </a>
 
     </div>
