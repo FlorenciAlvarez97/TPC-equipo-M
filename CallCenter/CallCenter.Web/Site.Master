@@ -37,8 +37,9 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+        <div class="cc-layout">
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark cc-sidebar">
             <div class="container">
                 <a class="navbar-brand" runat="server" href="~/">Call Center</a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
@@ -47,7 +48,6 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a runat="server" href="~/Login.aspx" class="nav-link">Ingresar</a></li>
                         <li class="nav-item"><a runat="server" href="~/Default.aspx" class="nav-link">Inicio</a></li>
                         <li class="nav-item"><a runat="server" href="~/Clientes.aspx" class="nav-link">Clientes</a></li>
                         <li class="nav-item"><a runat="server" href="~/Incidencias.aspx" class="nav-link">Incidencias</a></li>
@@ -58,7 +58,12 @@
                 </div>
             </div>
         </nav>
-        <div class="container body-content">
+        <div class="container body-content cc-content">
+            <header class="d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom pb-3 mb-4">
+                <span>Sistema Call Center</span>
+
+                <a runat="server" href="~/Login.aspx" class="btn btn-outline-secondary"> Ingresar</a>
+            </header>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
@@ -66,6 +71,7 @@
                 <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
             </footer>
         </div>
+      </div>
     </form>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>

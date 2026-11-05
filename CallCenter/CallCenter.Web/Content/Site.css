@@ -19,3 +19,47 @@ textarea {
         padding: 0;
     }
 }
+
+/* Menú lateral y contenido en pantallas */
+@media (min-width: 576px) {
+
+    /* Contenedor general: menú y contenido uno al lado del otro */
+    .cc-layout {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Menú lateral */
+    .cc-sidebar {
+        width: 240px;
+        flex-shrink: 0;
+        align-items: flex-start;
+        padding: 24px 16px;
+    }
+
+        /* Acomodar el interior del menú en vertical */
+        .cc-sidebar > .container {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+        }
+
+        /* Separar el nombre de la aplicación de las opciones */
+        .cc-sidebar .navbar-brand {
+            margin: 0 0 24px;
+        }
+
+        /* Mostrar las opciones una debajo de la otra */
+        .cc-sidebar .navbar-nav {
+            flex-direction: column;
+        }
+
+    /* Área donde se muestra cada página */
+    .cc-content {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+        margin: 0;
+        padding: 24px;
+    }
+}
