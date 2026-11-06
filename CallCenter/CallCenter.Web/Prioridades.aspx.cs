@@ -32,5 +32,21 @@ namespace CallCenter.Web
                 }
             }
         }
+
+        protected void dgvPrioridades_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            if (dgvPrioridades.SelectedDataKey == null)
+            {
+                lblError.Text = "No se puedo identificar la prioridad seleccionada";
+                lblError.Visible = true;
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvPrioridades.SelectedDataKey.Value);
+
+            Response.Redirect("~/PrioridadFormulario.aspx?id=" + id, false);
+            Context.ApplicationInstance.CompleteRequest();
+            return;
+        }
     }
 }

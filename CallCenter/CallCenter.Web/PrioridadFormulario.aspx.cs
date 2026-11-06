@@ -11,9 +11,85 @@ namespace CallCenter.Web
 {
     public partial class PrioridadFormulario : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e) {}   
+        private int ObtenerIdDesdeUrl()
+        {
+            string idTexto = Request.QueryString["id"]; 
+
+            if(idTexto == null)
+            {
+                return 0;
+            }
+
+            int id;
+
+            if(!int.TryParse(idTexto, out id)|| id <=0)
+            {
+                throw new ArgumentException("El ID de la prioridad no es válido");
+            }
+
+            return id;
+        }
+
+        private void MostrarError(string mensaje)
+        {
+            lblError.Text = Server.HtmlEncode(mensaje);
+            lblError.Visible = true;
+        }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (IsPostBack)
+            {
+                return;
+            }
+
+            try
+            {
+                int id = ObtenerIdDesdeUrl();
+
+                if (id == 0)
+                {
+                    Title = "Nueva prioridad";
+                    btnGuardar.Text = "Guardar";
+                    return;
+                }
+
+                PrioridadNegocio negocio = new PrioridadNegocio();
+                Prioridad prioridad = negocio.ObtenerPorId(id);
+
+                if (prioridad == null)
+                {
+                    throw new ArgumentException("No se encontro la prioridad solicitada");
+                }
+
+                txtNombre.Text = prioridad.Nombre;
+                txtNivel.Text = prioridad.Nivel.ToString();
+
+                Title = "Editar prioridad";
+                btnGuardar.Text = "Guardar cambios";
+            }
+
+            catch (ArgumentException ex)
+            {
+                MostrarError(ex.Message);
+                btnGuardar.Enabled = false;
+            }
+
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                MostrarError("Nos se puedo cargar la prioridad");
+                btnGuardar.Enabled=false;
+            }
+        }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+            // No guardar si se bloqueó el formulario por un error de carga
+            if (!btnGuardar.Enabled)
+            {
+                return;
+            }
+
             // Ocultar cualquier mensaje del intento anterior
             lblError.Visible= false;
 
@@ -21,26 +97,38 @@ namespace CallCenter.Web
 
             if (!int.TryParse(txtNivel.Text, out nivel) || nivel <= 0)
             {
-                lblError.Text = "Ingresá un nivel mayor a cero";
-                lblError.Visible = true;
+                MostrarError("Ingresá un nivel mayot a cero");
                 return;
             }
 
             try
             {    // Armar el objeto con los datos del formulario.
+
+                int id = ObtenerIdDesdeUrl();
+
                 Prioridad prioridad = new Prioridad();
+                prioridad.Id = id;
                 prioridad.Nombre = txtNombre.Text;
                 prioridad.Nivel = nivel;
                 prioridad.Activo = true;
 
                 PrioridadNegocio negocio = new PrioridadNegocio();
-                negocio.Agregar(prioridad);
+
+                if(id == 0)
+                {   // crear un registro nuevo
+                    prioridad.Activo= true;
+                    negocio.Agregar(prioridad);
+                }
+                else
+                {   //actualizar el registro indicado.
+                    negocio.Agregar(prioridad);
+                }
+                
             }
 
             catch (ArgumentException ex)
             {
-                lblError.Text = Server.HtmlEncode(ex.Message);
-                lblError.Visible = true;
+                MostrarError(ex.Message);
                 return;
             }
 
