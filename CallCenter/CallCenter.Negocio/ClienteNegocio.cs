@@ -46,6 +46,30 @@ namespace CallCenter.Negocio
             }
         }
 
+        public List<Cliente> Buscar(string texto, bool? activo)
+        {
+
+            List<Cliente> lista = new List<Cliente>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("SELECT " + Columnas + " FROM dbo.Clientes WHERE (Nombre LIKE @Texto OR Apellido LIKE @Texto OR Email LIKE @Texto) AND (@Activo IS NULL OR Activo = @Activo) ORDER BY Apellido, Nombre;");
+                datos.SetearParametro("@Texto", "%" + texto?? "");
+                datos.SetearParametro("@Activo", activo);
+                datos.Leer();
+                while (datos.Lector.Read())
+                {
+                    lista.Add(ArmarCliente(datos));
+                }
+                return lista;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
+        }
+
         public Cliente obtenerporId(int id)
         {
             AccesoDatos datos = new AccesoDatos();

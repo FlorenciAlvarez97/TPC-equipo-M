@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="CallCenter.Web.Clientes" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Clientes</h1>
     <p></p>
@@ -8,12 +7,20 @@
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
     </div>
     <div class="row mb-3">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <asp:Label ID="lblBuscar" runat="server" Text="Buscar por nombre, apellido o email" AssociatedControlID="txtBuscar" CssClass="form-label" />
             <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" />
         </div>
-        <div class="col-md-4 d-flex align-items-end">
-            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" Enabled="false" CausesValidation="false" />
+        <div class="col-md-3">
+            <asp:Label ID="lblEstado" runat="server" Text="Estado" AssociatedControlID="ddlEstado" CssClass="form-label" />
+            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Todos" Value="" Selected="True" />
+                <asp:ListItem Text="Activos" Value="1" />
+                <asp:ListItem Text="Inactivos" Value="0" />
+            </asp:DropDownList>
+        </div>
+        <div class="col-md-3 d-flex align-items-end">
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-outline-primary" OnClick="btnBuscar_Click" CausesValidation="false" />
         </div>
     </div>
     <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />

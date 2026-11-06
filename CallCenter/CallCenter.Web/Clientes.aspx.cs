@@ -16,22 +16,40 @@ namespace CallCenter.Web
             if (!IsPostBack)
             {
                 CargarClientes();
+
             }
         }
         private void CargarClientes()
         {
             try
             {
+                bool? activo = null;
+                if (ddlEstado.SelectedValue == "1")
+                {
+                    activo = true;
+                }
+
+                else if (ddlEstado.SelectedValue == "0")
+                {
+                    activo = false;
+                }
+
                 ClienteNegocio negocio = new ClienteNegocio();
-                dgvClientes.DataSource = negocio.Listar();
+                dgvClientes.DataSource = negocio.Buscar(txtBuscar.Text.Trim(), activo);
                 dgvClientes.DataBind();
+
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                lblError.Text = "No se pudieron cargar los clientes.";
+                lblError.Text = "No se pudieron cargar los clientes: " + ex.Message;
                 lblError.Visible = true;
             }
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            CargarClientes();
         }
         protected void dgvClientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
