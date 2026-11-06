@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Clientes" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Clientes.aspx.cs" Inherits="CallCenter.Web.Clientes" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Clientes</h1>
-    <p> </p>
+    <p></p>
     <div class="mb-3">
         <a runat="server" href="~/ClienteFormulario.aspx" class="btn btn-primary">Nuevo cliente</a>
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
@@ -17,14 +18,20 @@
     </div>
     <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
     <div class="table-responsive">
-        <asp:GridView ID="dgvClientes" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay clientes cargados">
+        <asp:GridView ID="dgvClientes" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay clientes cargados" OnRowCommand="dgvClientes_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                 <asp:BoundField DataField="Email" HeaderText="Email" />
                 <asp:BoundField DataField="Telefono" HeaderText="Teléfono" />
                 <asp:CheckBoxField DataField="Activo" HeaderText="Activo" />
+                <asp:TemplateField HeaderText="Acciones">
+                    <ItemTemplate>
+                        <a href='<%# ResolveUrl("~/ClienteFormulario.aspx?id=" + Eval("Id")) %>' class="btn btn-sm btn-outline-primary">Editar</a>
+                        <asp:Button ID="btnEstado" runat="server" CssClass="btn btn-sm btn-outline-secondary" CommandName="CambiarEstado" CommandArgument='<%# Eval("Id") %>' Text='<%# (bool)Eval("Activo") ? "Desactivar" : "Reactivar" %>' OnClientClick="return confirm('¿Seguro que querés cambiar el estado de este cliente?');" CausesValidation="false" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>
-</asp:Content> 
+</asp:Content>
