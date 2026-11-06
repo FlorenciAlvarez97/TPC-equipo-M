@@ -108,6 +108,22 @@ namespace CallCenter.Negocio
             }
         }
 
+        public void modificar(Cliente cliente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Clientes SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Telefono = @Telefono, Direccion = @Direccion, Activo = @Activo WHERE Id = @Id;");
+                cargarparametros(datos, cliente);
+                datos.SetearParametro("@Id", cliente.Id);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
 
 

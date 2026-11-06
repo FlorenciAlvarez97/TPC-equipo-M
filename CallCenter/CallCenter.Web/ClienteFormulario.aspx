@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Nuevo Cliente" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ClienteFormulario.aspx.cs" Inherits="CallCenter.Web.ClienteFormulario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Nuevo cliente</h1>
+    <h1 id="tituloPagina" runat="server">Nuevo cliente</h1>
     <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
     <p class="text-muted"></p>
     <div class="row">
