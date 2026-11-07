@@ -8,7 +8,7 @@ using CallCenter.Dominio;
 
 namespace CallCenter.Negocio
 {
-    internal class RolNegocio
+    public class RolNegocio
     {
         public List<RolUsuario> Listar()
         {
