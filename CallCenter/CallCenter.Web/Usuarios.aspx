@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="table-responsive">
-        <asp:GridView ID="dgvUsuarios" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay usuarios cargados">
+        <asp:GridView ID="dgvUsuarios" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay usuarios cargados" OnRowCommand="dgvUsuarios_RowCommand">
             <Columns>
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="NombreUsuario" HeaderText="Usuario" />
@@ -42,6 +42,7 @@
                 <asp:TemplateField HeaderText="Acciones">
                     <ItemTemplate>
                         <a href='UsuarioFormulario.aspx?id=<%# Eval("Id") %>' class="btn btn-sm btn-outline-primary">Editar</a>
+                        <asp:Button ID="btnEstado" runat="server" CommandName="CambiarEstado" CommandArgument='<%# Eval("Id") %>' Text='<%# (bool)Eval("Activo") ? "Desactivar" : "Reactivar" %>' CssClass="btn btn-sm btn-outline-danger" OnClientClick="return confirm('¿Confirmás el cambio de estado de este usuario?');" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

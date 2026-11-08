@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CallCenter.Dominio;
 
 namespace CallCenter.Web
 {
@@ -75,6 +76,28 @@ namespace CallCenter.Web
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             Cargarusuarios();
+        }
+
+        protected void dgvUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "CambiarEstado") 
+            {
+                try
+                {
+                    int id = int.Parse(e.CommandArgument.ToString());
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    Usuario usuario = negocio.ObtenerPorId(id);
+                    negocio.CambiarEstado(id, !usuario.Activo);
+                    Cargarusuarios();
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+                    lblError.Text = "No se pudo cambiar el estado del usuario.";
+                    lblError.Visible = true;
+                }
+
+            }
         }
     }
 }

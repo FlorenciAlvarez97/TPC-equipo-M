@@ -165,5 +165,21 @@ namespace CallCenter.Negocio
  
         }
 
+        public void CambiarEstado(int id, bool activo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Usuarios SET Activo = @Activo WHERE Id = @Id;");
+                datos.SetearParametro("@Activo", activo);
+                datos.SetearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
     }
 }
