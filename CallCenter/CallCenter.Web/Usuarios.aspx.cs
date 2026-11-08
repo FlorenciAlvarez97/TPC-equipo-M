@@ -14,23 +14,67 @@ namespace CallCenter.Web
         {
             if (!IsPostBack)
             {
-                try
-                {
-
-                    UsuarioNegocio negocio = new UsuarioNegocio();
-                    dgvUsuarios.DataSource = negocio.Listar();
-                    dgvUsuarios.DataBind();
-
-                }
-                catch (Exception ex)
-                {
-                    System.Diagnostics.Debug.WriteLine(ex.ToString());
-                    lblError.Text = "No se pudieron cargar los usuarios.";
-                    lblError.Visible = true;
-                }
+                Cargarroles();
+                Cargarusuarios();
             }
 
 
+        }
+
+        private void Cargarroles()
+        {
+            try
+            {
+
+                ddlFiltroRol.DataSource = new RolNegocio().Listar();
+                ddlFiltroRol.DataTextField = "Nombre";
+                ddlFiltroRol.DataValueField = "Id";
+                ddlFiltroRol.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "No se pudieron cargar los roles.";
+                lblError.Visible = true;
+            }
+        }
+
+        private void Cargarusuarios()
+        {
+
+            try
+            {
+                int? idrol = null;
+                if (ddlFiltroRol.SelectedValue != "")
+                {
+                    idrol = int.Parse(ddlFiltroRol.SelectedValue);
+                }
+
+                bool? activo = null;
+                if (ddlEstado.SelectedValue != "")
+                {
+                    activo = ddlEstado.SelectedValue == "1";
+                }
+                dgvUsuarios.DataSource = new UsuarioNegocio().Buscar(txtBuscar.Text.Trim(), idrol, activo);
+                dgvUsuarios.DataBind();
+
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "No se pudieron cargar los usuarios.";
+                lblError.Visible = true;
+            }
+
+
+        }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Cargarusuarios();
         }
     }
 }

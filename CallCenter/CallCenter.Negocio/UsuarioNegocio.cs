@@ -140,5 +140,30 @@ namespace CallCenter.Negocio
                 datos.CerrarConexion();
             }
         }
+
+       public List<Usuario> Buscar(string texto, int? idrol, bool? activo)
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("SELECT u.Id, u.Nombre, u.NombreUsuario, u.IdRol, r.Nombre AS NombreRol, u.Activo FROM dbo.Usuarios u INNER JOIN dbo.Roles r ON r.Id = u.IdRol WHERE (@Texto = '' OR u.Nombre LIKE '%' + @Texto + '%' OR u.NombreUsuario LIKE '%' + @Texto + '%') AND (@IdRol IS NULL OR u.IdRol = @IdRol) AND (@Activo IS NULL OR u.Activo = @Activo) ORDER BY u.Nombre;");
+                datos.SetearParametro("@Texto", texto);
+                datos.SetearParametro("@IdRol", idrol);
+                datos.SetearParametro("@Activo", activo);
+                datos.Leer();
+                while (datos.Lector.Read())
+                {
+                    lista.Add(ArmarUsuario(datos));
+                }
+                return lista;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+ 
+        }
+
     }
 }

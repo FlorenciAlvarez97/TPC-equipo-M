@@ -8,6 +8,26 @@
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
     </div>
     <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
+    <div class="row g-2 mb-3">
+        <div class="col-md-4">
+            <asp:TextBox ID="txtBuscar" runat="server" CssClass="form-control" placeholder="Buscar por nombre o usuario" />
+        </div>
+        <div class="col-md-3">
+            <asp:DropDownList ID="ddlFiltroRol" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                <asp:ListItem Text="Todos los roles" Value="" />
+            </asp:DropDownList>
+        </div>
+        <div class="col-md-3">
+            <asp:DropDownList ID="ddlEstado" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Todos" Value="" />
+                <asp:ListItem Text="Activos" Value="1" />
+                <asp:ListItem Text="Inactivos" Value="0" />
+            </asp:DropDownList>
+        </div>
+        <div class="col-md-2">
+            <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn btn-primary w-100" OnClick="btnBuscar_Click" />
+        </div>
+    </div>
     <div class="table-responsive">
         <asp:GridView ID="dgvUsuarios" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-bordered" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay usuarios cargados">
             <Columns>
