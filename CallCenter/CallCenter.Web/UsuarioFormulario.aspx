@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Usuario" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UsuarioFormulario.aspx.cs" Inherits="CallCenter.Web.UsuarioFormulario" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Usuario</h1>
+    <h1 id="tituloPagina" runat="server">Nuevo usuario</h1>
     <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
     <div class="row">
         <div class="col-md-6">

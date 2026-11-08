@@ -1,7 +1,8 @@
 ﻿<%@ Page Title="Usuarios" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Usuarios.aspx.cs" Inherits="CallCenter.Web.Usuarios" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Usuarios</h1>
-    <p> </p>
+    <p></p>
     <div class="mb-3">
         <a runat="server" href="~/UsuarioFormulario.aspx" class="btn btn-primary">Nuevo usuario</a>
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
@@ -18,6 +19,11 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:CheckBoxField DataField="Activo" HeaderText="Activo" />
+                <asp:TemplateField HeaderText="Acciones">
+                    <ItemTemplate>
+                        <a href='UsuarioFormulario.aspx?id=<%# Eval("Id") %>' class="btn btn-sm btn-outline-primary">Editar</a>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
     </div>

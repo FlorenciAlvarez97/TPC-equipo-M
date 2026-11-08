@@ -24,6 +24,11 @@ namespace CallCenter.Web
                     ddlRol.DataValueField = "Id";
                     ddlRol.DataBind();
 
+                    if (Request.QueryString["id"] != null)
+                    {
+                        Cargausuario(int.Parse(Request.QueryString["id"]));
+                    }
+
 
                 }
                 catch (Exception ex)
@@ -39,34 +44,59 @@ namespace CallCenter.Web
 
         }
 
+        private void Cargausuario(int id)
+        {
+            tituloPagina.InnerText = "Editar usuario";
+            Usuario usuario = new UsuarioNegocio().ObtenerPorId(id);
+            if (usuario == null)
+            {
+                Response.Redirect("Usuarios.aspx", false);
+                return;
+            }
+
+            txtNombre.Text = usuario.Nombre;
+            txtNombreUsuario.Text = usuario.NombreUsuario;
+            ddlRol.SelectedValue = usuario.Rol.Id.ToString();
+            chkActivo.Checked = usuario.Activo;
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-
-                UsuarioNegocio negocio = new UsuarioNegocio();
-                if (negocio.ExisteNombreUsuario(txtNombreUsuario.Text.Trim(), 0))
+                int id = 0;
+                if (Request.QueryString["id"] != null)
                 {
-                    lblError.Text = "El nombre de usuario ya existe.";
+                    id = int.Parse(Request.QueryString["id"]);
+                }
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                if (negocio.ExisteNombreUsuario(txtNombreUsuario.Text.Trim(), id))
+                {
+                    lblError.Text = "Ya existe un usuario con ese nombre de usuario.";
                     lblError.Visible = true;
                     return;
                 }
-
-                Usuario nuevo = new Usuario();
-                nuevo.Nombre = txtNombre.Text.Trim();
-                nuevo.NombreUsuario = txtNombreUsuario.Text.Trim();
-                nuevo.Contraseña = txtContrasena.Text.Trim();
-                nuevo.Rol = new RolUsuario();
-                nuevo.Rol.Id = int.Parse(ddlRol.SelectedValue);
-                nuevo.Activo = chkActivo.Checked;
-                negocio.Agregar(nuevo);
-                Response.Redirect("Usuarios.aspx");
-
-
+                Usuario usuario = new Usuario();
+                usuario.Id = id;
+                usuario.Nombre = txtNombre.Text.Trim();
+                usuario.NombreUsuario = txtNombreUsuario.Text.Trim();
+                usuario.Contraseña = txtContrasena.Text;
+                usuario.Rol = new RolUsuario();
+                usuario.Rol.Id = int.Parse(ddlRol.SelectedValue);
+                usuario.Activo = chkActivo.Checked;
+                if (id > 0)
+                {
+                    negocio.Modificar(usuario);
+                }
+                else
+                {
+                    negocio.Agregar(usuario);
+                }
+                Response.Redirect("Usuarios.aspx", false);
             }
             catch (Exception ex)
             {
-                lblError.Text = "No se pudo guardar el usuario. Error: " + ex.Message;
+                lblError.Text = "No se pudo guardar el usuario: " + ex.Message;
                 lblError.Visible = true;
             }
         }
