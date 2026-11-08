@@ -26,7 +26,7 @@
                 <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" Checked="true" />
             </div>
             <div class="mb-3">
-                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Enabled="false" />
+                <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" />
                 <a runat="server" href="~/Usuarios.aspx" class="btn btn-secondary">Cancelar</a>
             </div>
         </div>
