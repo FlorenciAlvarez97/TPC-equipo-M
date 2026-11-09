@@ -5,7 +5,10 @@
     <div class="row">
 
         <div class="col-md-6 mb-3">
-
+            <asp:Label ID="lblCliente" runat="server"
+                Text="Cliente"
+                AssociatedControlID="ddlCliente"
+                CssClass="form-label" />
             <asp:DropDownList ID="ddlCliente" runat="server"
                 CssClass="form-select">
                 <asp:ListItem Value="" Text="Pendiente: cargar clientes" />
@@ -13,12 +16,12 @@
         </div>
 
 
-        <div class="col-md-6 mc-3">
+        <div class="col-md-6 mb-3">
 
             <asp:Label ID="lblTipo" runat="server"
                 Text="Tipo de incidencia"
                 AssociatedControlID="ddlTipo"
-                CssClass="form.label" />
+                CssClass="form-label" />
 
             <asp:DropDownList ID="ddlTipo" runat="server"
                 CssClass="form-select">
@@ -26,12 +29,12 @@
             </asp:DropDownList>
         </div>
 
-        <div class="col-md-6 mc-3">
+        <div class="col-md-6 mb-3">
 
             <asp:Label ID="lblPrioridad" runat="server"
                 Text="Prioridad"
                 AssociatedControlID="ddlPrioridad"
-                CssClass="form.label" />
+                CssClass="form-label" />
 
             <asp:DropDownList ID="ddlPrioridad" runat="server"
                 CssClass="form-select">
@@ -39,12 +42,12 @@
             </asp:DropDownList>
         </div>
 
-        <div class="col-md-12 mc-3">
+        <div class="col-md-12 mb-3">
 
             <asp:Label ID="Descripcion" runat="server"
                 Text="Descripción de la incidencia"
                 AssociatedControlID="txtDescripcion"
-                CssClass="form.label" />
+                CssClass="form-label" />
 
             <asp:TextBox ID="txtDescripcion" runat="server"
                 TextMode="MultiLine"
@@ -54,10 +57,10 @@
         </div>
 </div>
     <div class="mb-3">
-        <a runat="server" href="~/IncidenciaFormulario.aspx" class="btn btn-primary"> Nueva Incidencia</a>
-        <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary"> Volver al inicio</a> 
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Enabled="false" />
+        <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Cancelar</a>
 
     </div>
 
 
-</asp:Content>
+</asp:Content> 
