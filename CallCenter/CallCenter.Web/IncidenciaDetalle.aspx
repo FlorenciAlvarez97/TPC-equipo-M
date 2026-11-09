@@ -73,12 +73,14 @@
             <div class="mb-3">
                 <asp:Label ID="lblComentarioCierre" runat="server" AssociatedControlID="txtComentarioCierre" CssClass="form-label" Text="Comentario final de cierre (obligatorio)" />
                 <asp:TextBox ID="txtComentarioCierre" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" />
-
                 <p class="form-text">Indicá el motivo del cierre </p>
             </div>
 
             <div class="mb-4">
-                <asp:Button ID="btnResuelto" runat="server" Text="Resuelto" CssClass="btn btn-success" Enabled="false" />
+                <asp:Button ID="btnCerrar" runat="server" Text="Cerrar incidencia" CssClass="btn btn-danger" Enabled="false" />
+            </div>
+            <div class="mb-3">
+                <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Volver a incidencias</a>
             </div>
 
             <div class="mb-4">
