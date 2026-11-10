@@ -190,6 +190,38 @@ namespace CallCenter.Negocio
                 datos.CerrarConexion();
             }
         }
+         public void CambiarEstado(int id, bool activo)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("El ID no es válido");
+            }
+
+            Prioridad existente = ObtenerPorId(id);
+
+            if (existente == null)
+            {
+                throw new ArgumentException("No se encontró la prridad que querés actualizar");
+            }
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Prioridades SET Activo = @Activo WHERW Id = @Id;");
+
+                datos.SetearParametro("@Activo", activo);
+                datos.SetearParametro("@Id", id);
+
+                datos.ejecutarAccion();
+            }
+
+            finally
+            {
+                datos.CerrarConexion();
+            }
+
+        }
 
     }
 }

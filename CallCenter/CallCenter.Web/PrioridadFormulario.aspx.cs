@@ -121,7 +121,7 @@ namespace CallCenter.Web
                 }
                 else
                 {   //actualizar el registro indicado.
-                    negocio.Agregar(prioridad);
+                    negocio.Modificar(prioridad);
                 }
                 
             }

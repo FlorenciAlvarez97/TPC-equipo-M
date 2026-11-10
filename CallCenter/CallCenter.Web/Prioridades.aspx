@@ -10,6 +10,7 @@
             AutoGenerateColumns="false"
             DataKeyNames="Id"
             OnSelectedIndexChanged="dgvPrioridades_SelectedIndexChanged"
+            OnRowCommand="dgvPrioridades_RowCommand"
             CssClass="table table-striped table-bordered"
             GridLines="None"
             ShowHeaderWhenEmpty="true"
@@ -19,7 +20,13 @@
                 <asp:BoundField DataField="Id" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Nivel" HeaderText="Nivel" />
-                
+
+                <asp:TemplateField HeaderText="Estado">
+                    <ItemTemplate>
+                        <%#(bool)Eval("Activo") ? "Activa" : "Incativa" %>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
                 <asp:CommandField
                     HeaderText="Acciones"
                     ShowSelectButton="true"
@@ -28,6 +35,18 @@
                     CausesValidation="false" >
                     <ControlStyle CssClass="=btn btn-outline-primary btn-sm"/>  
                 </asp:CommandField>
+
+                <asp:TemplateField HeaderText= "Cambiar estado">
+                    <ItemTemplate>
+                        <asp:Button ID="btnCambiarEstado" runat="server" 
+                            Text='<%#(bool)Eval("Activo") ? "Desactivar" : "Reactivar" %>'
+                            CommandName='<%#(bool)Eval("Activo") ? "Desactivar" : "Reactivar" %>'
+                            CommandArgument='<%#Eval ("Id") %>'
+                            CssClass="btn btn-outline-secondary btn-sm"
+                            CausesValidation="false"
+                            OnCLienteClick="return confirm('¿Esta seguro de guardar el cambio?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
            </Columns>
        </asp:GridView>
     </div>
