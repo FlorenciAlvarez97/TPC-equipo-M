@@ -44,7 +44,7 @@
                             CommandArgument='<%#Eval ("Id") %>'
                             CssClass="btn btn-outline-secondary btn-sm"
                             CausesValidation="false"
-                            OnCLienteClick="return confirm('¿Esta seguro de guardar el cambio?');" />
+                            OnCLientClick="return confirm('¿Esta seguro de guardar el cambio?');" />
                     </ItemTemplate>
                 </asp:TemplateField>
            </Columns>

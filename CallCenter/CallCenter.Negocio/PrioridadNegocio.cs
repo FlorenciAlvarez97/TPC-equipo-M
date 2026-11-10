@@ -208,7 +208,7 @@ namespace CallCenter.Negocio
 
             try
             {
-                datos.ValidarConsulta("UPDATE dbo.Prioridades SET Activo = @Activo WHERW Id = @Id;");
+                datos.ValidarConsulta("UPDATE dbo.Prioridades SET Activo = @Activo WHERE Id = @Id;");
 
                 datos.SetearParametro("@Activo", activo);
                 datos.SetearParametro("@Id", id);
