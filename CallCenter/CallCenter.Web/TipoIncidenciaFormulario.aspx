@@ -3,6 +3,8 @@
 
     <h1>Tipo de incidencia</h1>
 
+       <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
+
     <div class="row">
         <div class="col-md-6">
             <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label" Text="Nombre" />
@@ -19,7 +21,7 @@
         </div>
 
          <div class="mb-3">
-             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" Enabled="false" />
+             <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" />
              <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-secondary"> Cancelar </a>
          </div>
     </div>

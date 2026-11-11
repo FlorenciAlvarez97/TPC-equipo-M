@@ -136,7 +136,7 @@ namespace CallCenter.Web
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
 
-                lblError.Text = "No se pudo completar el guardado. Revisá el listado antes de volver a intentar.";
+                lblError.Text = "No se pudo guardar la prioridad";
                 lblError.Visible = true;
                 return;
             }

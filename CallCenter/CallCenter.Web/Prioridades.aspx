@@ -23,7 +23,7 @@
 
                 <asp:TemplateField HeaderText="Estado">
                     <ItemTemplate>
-                        <%#(bool)Eval("Activo") ? "Activa" : "Incativa" %>
+                        <%#(bool)Eval("Activo") ? "Activo" : "Incativo" %>
                     </ItemTemplate>
                 </asp:TemplateField>
 

@@ -19,3 +19,6 @@ BEGIN
     ('Facturacion', 'Consultas o errores de facturacion');
 END
 GO
+
+SELECT Id, Nombre, Descripcion, Activo
+FROM dbo.TiposIncidencia
