@@ -40,3 +40,5 @@ IF OBJECT_ID('dbo.Usuarios') IS NULL
 GO
 
 SELECT Id, Nombre FROM dbo.Roles
+SELECT Id, Nombre, Apellido, Email, Telefono, Direccion, Activo FROM dbo.Clientes
+SELECT Id, Nombre, NombreUsuario, Contrasena, IdRol FROM dbo.Usuarios

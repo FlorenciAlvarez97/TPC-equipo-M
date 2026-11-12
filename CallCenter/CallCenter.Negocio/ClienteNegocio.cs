@@ -54,7 +54,7 @@ namespace CallCenter.Negocio
             try
             {
                 datos.ValidarConsulta("SELECT " + Columnas + " FROM dbo.Clientes WHERE (Nombre LIKE @Texto OR Apellido LIKE @Texto OR Email LIKE @Texto) AND (@Activo IS NULL OR Activo = @Activo) ORDER BY Apellido, Nombre;");
-                datos.SetearParametro("@Texto", "%" + texto?? "");
+                datos.SetearParametro("@Texto", "%" + (texto?? "") +"%");
                 datos.SetearParametro("@Activo", activo);
                 datos.Leer();
                 while (datos.Lector.Read())
@@ -125,6 +125,8 @@ namespace CallCenter.Negocio
                 datos.ValidarConsulta("UPDATE dbo.Clientes SET Activo = @Activo WHERE Id = @Id;");
                 datos.SetearParametro("@Activo", activo);
                 datos.SetearParametro("@Id", id);
+
+                datos.ejecutarAccion();
             }
             finally
             {

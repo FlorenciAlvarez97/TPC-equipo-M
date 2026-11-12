@@ -84,11 +84,6 @@ namespace CallCenter.Web
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-            // No guardar si se bloqueó el formulario por un error de carga
-            if (!btnGuardar.Enabled)
-            {
-                return;
-            }
 
             // Ocultar cualquier mensaje del intento anterior
             lblError.Visible= false;

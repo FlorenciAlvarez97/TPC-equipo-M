@@ -23,9 +23,7 @@ namespace CallCenter.Web
                 {
                     CargarCliente(id);
                 }
-
             }
-
         }
 
         private void CargarCliente(int id)
@@ -43,6 +41,7 @@ namespace CallCenter.Web
                 txtNombre.Text = cliente.Nombre;
                 txtApellido.Text = cliente.Apellido;
                 txtEmail.Text = cliente.Email;
+                txtTelefono.Text = cliente.Telefono;
                 txtDireccion.Text = cliente.Direccion;
                 chkActivo.Checked = cliente.Activo;
                 tituloPagina.InnerText = "Editar Cliente";
