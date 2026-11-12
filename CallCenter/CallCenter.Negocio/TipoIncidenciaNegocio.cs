@@ -32,15 +32,16 @@ namespace CallCenter.Negocio
             return nombre;
         }
 
-        private bool ExisteNombre(string nombre)
+        private bool ExisteNombre(string nombre, int idExcluir = 0)
         {
             AccesoDatos datos = new AccesoDatos();
 
             try
             {
-                datos.ValidarConsulta("SELECT COUNT(*) FROM dbo.TiposIncidencia WHERE UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)");
+                datos.ValidarConsulta("SELECT COUNT(*) FROM dbo.TiposIncidencia WHERE UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)ND Id <> @IdExcluir;");
 
                 datos.SetearParametro("@Nombre", nombre.Trim());
+                datos.SetearParametro("@IdExcluir", idExcluir);
 
 
                 int cantidad = Convert.ToInt32(datos.EjecutarEscalar());
@@ -88,6 +89,42 @@ namespace CallCenter.Negocio
             }
         }
 
+        public TipoIncidencia ObtenerPorId(int id)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("El ID no es válido");
+            }
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta(@"SELECT Id, Nombre, Descripcion, Activo FROM dbo.TiposIncidencia WHERE Id = @Id;");
+
+
+                datos.SetearParametro("@Id", id);
+                datos.Leer();
+
+                if (datos.Lector.Read())
+                {
+                    TipoIncidencia tipo = new TipoIncidencia();
+
+                    tipo.Id = (int)datos.Lector["Id"];
+                    tipo.Nombre = (string)datos.Lector["Nombre"];
+                    tipo.Descripcion = datos.Lector["Descripcion"] is DBNull ? null : (string)datos.Lector["Descripcion"];
+                    tipo.Activo = (bool)datos.Lector["Activo"];
+
+                    return tipo;
+                }
+                return null;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
         public void Agregar(TipoIncidencia nuevo)
         {
             string nombre = ValidarDatos(nuevo);
@@ -114,6 +151,48 @@ namespace CallCenter.Negocio
                 ; datos.CerrarConexion();
             }
         }
+
+        public void Modificar(TipoIncidencia tipo)
+        {
+            string nombre = ValidarDatos(tipo);
+
+            if (tipo.Id <= 0)
+            {
+                throw new ArgumentException("El ID no es válido");
+            }
+
+            TipoIncidencia existente = ObtenerPorId(tipo.Id);
+
+            if (existente == null)
+            {
+                throw new ArgumentException("No se encontró el tipo de incidencia que querés modificar");
+            }
+
+            if (ExisteNombre(nombre, tipo.Id))
+            {
+                throw new ArgumentException("Ya existe otro el tipo de incidenciacon ese nombre");
+            }
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta(@"UPDATE dbo.TiposIncidencia SET Nombre = @Nombre, Descripcion = @Descripcion WHERE Id = @Id;");
+
+                datos.SetearParametro("@Nombre", nombre);
+                datos.SetearParametro("@Descripcion", string.IsNullOrWhiteSpace(tipo.Descripcion) ? null : tipo.Descripcion.Trim());
+                datos.SetearParametro("@Activo", tipo.Activo);
+
+                datos.ejecutarAccion();
+
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+
 
 
     }

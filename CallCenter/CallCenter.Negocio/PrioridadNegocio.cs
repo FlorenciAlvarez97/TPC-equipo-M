@@ -93,7 +93,7 @@ namespace CallCenter.Negocio
         {
             if (id <= 0)
             {
-                throw new ArgumentException("El ID de la prioridad no es válido");
+                throw new ArgumentException("El ID no es válido");
             }
 
             AccesoDatos datos= new AccesoDatos();
@@ -157,7 +157,7 @@ namespace CallCenter.Negocio
 
             if(prioridad.Id <= 0)
             {
-                throw new ArgumentException("El ID de la prioridad no es válido");
+                throw new ArgumentException("El ID no es válido");
             }
 
             Prioridad existente = ObtenerPorId(prioridad.Id);

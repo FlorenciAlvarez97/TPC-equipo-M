@@ -18,6 +18,7 @@
             runat="server"
             AutoGenerateColumns="false"
             DataKeyNames="Id"
+            OnSelectedIndexChanged="dgvTiposIncidencia_SelectedIndexChanged"
             CssClass="table table-striped table-bordered"
             GridLines="None"
             ShowHeaderWhenEmpty="true"
@@ -33,6 +34,15 @@
                         <%#(bool)Eval("Activo") ? "Activo" : "Incativo" %>
                     </ItemTemplate>
                 </asp:TemplateField>
+
+                <asp:CommandField
+                    HeaderText="Acciones"
+                    ShowSelectButton="true"
+                    SelectText="Editar"
+                    ButtonType="Link"
+                    CausesValidation="false" >
+                    <ControlStyle CssClass="=btn btn-outline-primary btn-sm"/>  
+                </asp:CommandField>
             </Columns>
         </asp:GridView>
      </div>

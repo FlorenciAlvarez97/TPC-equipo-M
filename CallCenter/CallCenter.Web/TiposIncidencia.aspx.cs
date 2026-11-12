@@ -16,6 +16,7 @@ namespace CallCenter.Web
             {
                 CargarTiposIncidencia();
             }
+
         }
         private void CargarTiposIncidencia()
         {
@@ -31,9 +32,25 @@ namespace CallCenter.Web
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
 
-                lblError.Text = "No se pudieron cargar los tipo de incidencia";
+                lblError.Text = Server.HtmlEncode(ex.ToString());
                 lblError.Visible = true;
             }
+        }
+
+        protected void dgvTiposIncidencia_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            if (dgvTiposIncidencia.SelectedDataKey == null)
+            {
+                lblError.Text = "No se puedo identificar el tipo de incidencia seleccionado";
+                lblError.Visible = true;
+                return;
+            }
+
+            int id = Convert.ToInt32(dgvTiposIncidencia.SelectedDataKey.Value);
+
+            Response.Redirect("~/TipoIncidenciaFormulario.aspx?id=" + id, false);
+            Context.ApplicationInstance.CompleteRequest();
+            return;
         }
     }
 }
