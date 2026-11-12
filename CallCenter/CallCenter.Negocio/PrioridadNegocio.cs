@@ -201,7 +201,7 @@ namespace CallCenter.Negocio
 
             if (existente == null)
             {
-                throw new ArgumentException("No se encontró la prridad que querés actualizar");
+                throw new ArgumentException("No se encontró la prioridad que querés actualizar");
             }
 
             AccesoDatos datos = new AccesoDatos();

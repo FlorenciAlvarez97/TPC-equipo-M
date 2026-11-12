@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CallCenter.Negocio;
+using CallCenter.Dominio;
 
 namespace CallCenter.Web
 {
@@ -52,5 +53,43 @@ namespace CallCenter.Web
             Context.ApplicationInstance.CompleteRequest();
             return;
         }
+
+
+        protected void dgvTiposIncidencia_RowCommand( object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName != "CambiarEstado")
+            {
+                return;
+            }
+
+            try
+            {
+                lblError.Visible = false;
+
+                int id = Convert.ToInt32(e.CommandArgument);
+
+                TipoIncidenciaNegocio negocio = new TipoIncidenciaNegocio();
+
+                var tipo = negocio.ObtenerPorId(id);
+
+                if (tipo == null)
+                {
+                    throw new ArgumentException("No se encontró el tipo de incidencia");
+                }
+
+                negocio.CambiarEstado(id, !tipo.Activo);
+
+                CargarTiposIncidencia();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                lblError.Text = "No se pudo cambiar el estado del tipo de incidencia.";
+
+                lblError.Visible = true;
+            }
+        }
+
     }
 }

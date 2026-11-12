@@ -19,6 +19,7 @@
             AutoGenerateColumns="false"
             DataKeyNames="Id"
             OnSelectedIndexChanged="dgvTiposIncidencia_SelectedIndexChanged"
+            OnRowCommand="dgvTiposIncidencia_RowCommand"
             CssClass="table table-striped table-bordered"
             GridLines="None"
             ShowHeaderWhenEmpty="true"
@@ -43,6 +44,19 @@
                     CausesValidation="false" >
                     <ControlStyle CssClass="=btn btn-outline-primary btn-sm"/>  
                 </asp:CommandField>
+                
+                <asp:TemplateField HeaderText="Cambiar estado">
+                    <ItemTemplate>
+                        <asp:Button ID="btnCambiarEstado"
+                            runat="server"
+                            Text='<%# (bool)Eval("Activo") ? "Desactivar" : "Reactivar" %>'
+                            CommandName="CambiarEstado"
+                            CommandArgument='<%# Eval("Id") %>'
+                            CssClass="btn btn-outline-secondary btn-sm"
+                            CausesValidation="false"
+                            OnClientClick="return confirm('¿Seguro que querés cambiar el estado?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView>
      </div>

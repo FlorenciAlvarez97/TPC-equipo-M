@@ -38,7 +38,7 @@ namespace CallCenter.Negocio
 
             try
             {
-                datos.ValidarConsulta("SELECT COUNT(*) FROM dbo.TiposIncidencia WHERE UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre)ND Id <> @IdExcluir;");
+                datos.ValidarConsulta("SELECT COUNT(*) FROM dbo.TiposIncidencia WHERE UPPER(LTRIM(RTRIM(Nombre))) = UPPER(@Nombre) AND Id <> @IdExcluir;");
 
                 datos.SetearParametro("@Nombre", nombre.Trim());
                 datos.SetearParametro("@IdExcluir", idExcluir);
@@ -181,7 +181,7 @@ namespace CallCenter.Negocio
 
                 datos.SetearParametro("@Nombre", nombre);
                 datos.SetearParametro("@Descripcion", string.IsNullOrWhiteSpace(tipo.Descripcion) ? null : tipo.Descripcion.Trim());
-                datos.SetearParametro("@Activo", tipo.Activo);
+                datos.SetearParametro("@Id", tipo.Id);
 
                 datos.ejecutarAccion();
 
@@ -191,6 +191,41 @@ namespace CallCenter.Negocio
                 datos.CerrarConexion();
             }
         }
+
+
+        public void CambiarEstado(int id, bool activo)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("El ID no es válido");
+            }
+
+            TipoIncidencia existente = ObtenerPorId(id);
+
+            if (existente == null)
+            {
+                throw new ArgumentException("No se encontró el tipo de incidencia");
+            }
+
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta(
+                    "UPDATE dbo.TiposIncidencia SET Activo = @Activo WHERE Id = @Id;"
+                );
+
+                datos.SetearParametro("@Activo", activo);
+                datos.SetearParametro("@Id", id);
+
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
 
 
 
