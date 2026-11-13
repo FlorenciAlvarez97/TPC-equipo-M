@@ -13,6 +13,8 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            rfvContrasena.Enabled = Request.QueryString["id"] == null;
+
             if (!IsPostBack)
             {
                 try
@@ -39,9 +41,6 @@ namespace CallCenter.Web
                 }
             }
 
-
-
-
         }
 
         private void Cargausuario(int id)
@@ -62,6 +61,11 @@ namespace CallCenter.Web
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+
+            if (!Page.IsValid)
+            {
+                return;
+            }
             try
             {
                 int id = 0;

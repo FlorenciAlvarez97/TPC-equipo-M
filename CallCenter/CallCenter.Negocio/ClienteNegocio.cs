@@ -102,8 +102,54 @@ namespace CallCenter.Negocio
             datos.SetearParametro("@Activo", cliente.Activo);
         }
 
+        private void ValidarDatos(Cliente cliente)
+        {
+            if (string.IsNullOrWhiteSpace(cliente.Nombre))
+            {
+                throw new ArgumentException("El nombre es obligatorio.");
+            }
+
+            if (cliente.Nombre.Trim().Length > 50)
+            {
+                throw new ArgumentException("El nombre no puede superar los 50 caracteres.");
+            }
+
+            if (string.IsNullOrWhiteSpace(cliente.Apellido))
+            {
+                throw new ArgumentException("El apellido es obligatorio.");
+            }
+
+            if (cliente.Apellido.Trim().Length > 30)
+            {
+                throw new ArgumentException("El apellido no puede superar los 30 caracteres.");
+            }
+
+            if (string.IsNullOrWhiteSpace(cliente.Email))
+            {
+                throw new ArgumentException("El email es obligatorio.");
+            }
+
+            if (cliente.Email.Trim().Length > 50)
+            {
+                throw new ArgumentException("El email no puede superar los 50 caracteres.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(cliente.Telefono)
+                && cliente.Telefono.Trim().Length > 10)
+            {
+                throw new ArgumentException("El teléfono no puede superar los 10 caracteres.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(cliente.Direccion)
+                && cliente.Direccion.Trim().Length > 100)
+            {
+                throw new ArgumentException("La dirección no puede superar los 100 caracteres.");
+            }
+        }
+
         public void agregar(Cliente nuevo)
         {
+            ValidarDatos(nuevo);
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -136,6 +182,7 @@ namespace CallCenter.Negocio
 
         public void modificar(Cliente cliente)
         {
+            ValidarDatos(cliente);
             AccesoDatos datos = new AccesoDatos();
             try
             {

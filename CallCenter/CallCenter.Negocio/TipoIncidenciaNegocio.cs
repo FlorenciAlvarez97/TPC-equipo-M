@@ -29,7 +29,14 @@ namespace CallCenter.Negocio
             {
                 throw new ArgumentException("El nombre no puede superar los 50 caracteres");
             }
-            return nombre;
+
+            if (!string.IsNullOrWhiteSpace(tipo.Descripcion) && tipo.Descripcion.Trim().Length > 300)
+            {
+                throw new ArgumentException(
+                    "La descripción no puede superar los 300 caracteres.");
+            }
+
+            return nombre; 
         }
 
         private bool ExisteNombre(string nombre, int idExcluir = 0)

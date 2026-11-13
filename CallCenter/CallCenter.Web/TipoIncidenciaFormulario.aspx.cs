@@ -64,6 +64,12 @@ namespace CallCenter.Web
 
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
+
+            if (!Page.IsValid)
+            {
+                return;
+            }
+
             try
             {
                 lblError.Visible = false;

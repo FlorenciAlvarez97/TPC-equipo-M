@@ -92,8 +92,49 @@ namespace CallCenter.Negocio
             }
         }
 
+
+        private void ValidarDatos(Usuario usuario, bool esNuevo)
+        {
+            if (string.IsNullOrWhiteSpace(usuario.Nombre))
+            {
+                throw new ArgumentException("El nombre es obligatorio.");
+            }
+
+            if (usuario.Nombre.Trim().Length > 100)
+            {
+                throw new ArgumentException("El nombre no puede superar los 100 caracteres.");
+            }
+
+            if (string.IsNullOrWhiteSpace(usuario.NombreUsuario))
+            {
+                throw new ArgumentException("El usuario es obligatorio.");
+            }
+
+            if (usuario.NombreUsuario.Trim().Length > 50)
+            {
+                throw new ArgumentException("El usuario no puede superar los 50 caracteres.");
+            }
+
+            if (usuario.Rol == null || usuario.Rol.Id <= 0)
+            {
+                throw new ArgumentException("Debés seleccionar un rol.");
+            }
+
+            if (esNuevo && string.IsNullOrWhiteSpace(usuario.Contraseña))
+            {
+                throw new ArgumentException("La contraseña es obligatoria.");
+            }
+
+            if (ExisteNombreUsuario(usuario.NombreUsuario, usuario.Id))
+            {
+                throw new ArgumentException("Ya existe un usuario con ese nombre de usuario.");
+            }
+        }
+
         public void Agregar(Usuario nuevo)
         {
+            ValidarDatos(nuevo, true);
+
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -113,6 +154,8 @@ namespace CallCenter.Negocio
 
         public void Modificar(Usuario usuario)
         {
+            ValidarDatos(usuario, false);
+
             AccesoDatos datos = new AccesoDatos();
             try
             {

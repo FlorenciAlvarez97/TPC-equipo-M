@@ -7,12 +7,15 @@
 
              <div class="mb-3">
                  <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label" Text="Nombre" />
-                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength="50"/>
+                 <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength="15"/>
+                 <asp:RequiredFieldValidator  ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="El nombre es obligatorio" CssClass="text-danger" Display="Dynamic" />
              </div>
 
             <div class="mb-3">
                 <asp:Label ID="lblNivel" runat="server" AssociatedControlID="txtNivel" CssClass="form-label" Text="Nivel" />
                 <asp:TextBox ID="txtNivel" runat="server" CssClass="form-control" TextMode="Number"/>
+                <asp:RequiredFieldValidator  ID="rfvNivel" runat="server" ControlToValidate="txtNivel" ErrorMessage="El nivel es obligatorio" CssClass="text-danger" Display="Dynamic" />
+                <asp:RangeValidator ID = "rvNivel" runat="server" ControlToValidate= "txtNivel" Type= "Integer" MinimumValue="1" MaximumValue="999999" ErrorMessage=" El nivel ingresado no es válido" CssClass= "text-danger" Display= "Dynamic" />
             </div>
 
             <div class="mb-3">

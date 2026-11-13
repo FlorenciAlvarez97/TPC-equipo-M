@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Tipo de incidencia" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TipoIncidenciaFormulario.aspx.cs" Inherits="CallCenter.Web.TipoIncidenciaFormulario" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+
 
     <h1>Tipo de incidencia</h1>
 
@@ -8,12 +10,13 @@
     <div class="row">
         <div class="col-md-6">
             <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label" Text="Nombre" />
-            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength= "50" />
+            <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="El nombre es obligatorio" CssClass="text-danger"  Display="Dynamic" />
         </div>
 
         <div class="mb-3">
             <asp:Label ID="lblDescripcion" runat="server" AssociatedControlID="txtDescripcion" CssClass="form-label" Text="Descripción" />
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" />
+            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" MaxLength= "300" />
         </div>
 
         <div class="mb-3">

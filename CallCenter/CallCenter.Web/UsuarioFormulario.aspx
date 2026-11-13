@@ -6,21 +6,26 @@
         <div class="col-md-6">
             <div class="mb-3">
                 <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label" Text="Nombre" />
-                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control"/>
+                <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength = "100"  />
+                <asp:RequiredFieldValidator  ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="El nombre es obligatorio" CssClass="text-danger" Display="Dynamic" />
             </div>
             <div class="mb-3">
                 <asp:Label ID="lblNombreUsuario" runat="server" AssociatedControlID="txtNombreUsuario" CssClass="form-label" Text="Nombre de usuario" />
-                <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control"/>
+                <asp:TextBox ID="txtNombreUsuario" runat="server" CssClass="form-control" MaxLength = "50"  />
+                <asp:RequiredFieldValidator  ID="rfvNombreUsuario" runat="server" ControlToValidate="txtNombreUsuario" ErrorMessage="El usuario es obligatorio" CssClass="text-danger" Display="Dynamic" />
             </div>
             <div class="mb-3">
                 <asp:Label ID="lblContrasena" runat="server" AssociatedControlID="txtContrasena" CssClass="form-label" Text="Contraseña" />
                 <asp:TextBox ID="txtContrasena" runat="server" CssClass="form-control" TextMode="Password"/>
+                <asp:RequiredFieldValidator  ID="rfvContrasena" runat="server" ControlToValidate="txtContrasena" ErrorMessage="La contraseña es obligatoria" CssClass="text-danger" Display="Dynamic" />
             </div>
+
             <div class="mb-3">
                 <asp:Label ID="lblRol" runat="server" AssociatedControlID="ddlRol" CssClass="form-label" Text="Rol" />
                 <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                     <asp:ListItem Text="Seleccioná un rol" Value="" Selected="True" />
                 </asp:DropDownList>
+                <asp:RequiredFieldValidator  ID="rfvRol" runat="server" ControlToValidate="ddlRol" InitialValue =" " ErrorMessage="Selecciona un rol" CssClass="text-danger" Display="Dynamic" />
             </div>
             <div class="mb-3">
                 <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" Checked="true" />
