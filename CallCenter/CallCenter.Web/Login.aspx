@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
      <h1>Iniciar sesión</h1>
 
+    <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
      <div class="row">
          <div class="col-md-6">
 
@@ -16,7 +17,7 @@
               </div>
 
              <div class="mb-3">
-                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" Enabled="false" />
+                 <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" CssClass="btn btn-primary" OnClick="btnIngresar_Click" />
                  <a runat="server" href="~/Default.aspx" class="btn btn-outline-primary"> Ver demostración </a>
             </div>
         </div>
