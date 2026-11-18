@@ -184,7 +184,7 @@ namespace CallCenter.Negocio
             }
         }
 
-       public List<Usuario> Buscar(string texto, int? idrol, bool? activo)
+        public List<Usuario> Buscar(string texto, int? idrol, bool? activo)
         {
             List<Usuario> lista = new List<Usuario>();
             AccesoDatos datos = new AccesoDatos();
@@ -205,7 +205,7 @@ namespace CallCenter.Negocio
             {
                 datos.CerrarConexion();
             }
- 
+
         }
 
         public void CambiarEstado(int id, bool activo)
@@ -222,6 +222,29 @@ namespace CallCenter.Negocio
             {
                 datos.CerrarConexion();
             }
+        }
+
+        public Usuario login(string nombreUsuario, string contrasena)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.ValidarConsulta("SELECT Id, Nombre, NombreUsuario, IdRol, Activo FROM dbo.Usuarios WHERE NombreUsuario = @NombreUsuario AND Contrasena = @Contrasena;");
+                datos.SetearParametro("@NombreUsuario", nombreUsuario);
+                datos.SetearParametro("@Contrasena", contrasena);
+                datos.Leer();
+                if(datos.Lector.Read())
+                {
+                    return ArmarUsuario(datos);
+                }
+                return null;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
         }
 
     }
