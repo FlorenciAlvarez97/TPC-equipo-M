@@ -11,6 +11,22 @@
             <asp:Label ID="lblClienteEncontrado" runat="server" CssClass="d-block mt-2" Visible="false" />
         </div>
 
+         
+<asp:Panel ID="pnlUsuarioDemo" runat="server"
+    CssClass="col-md-6 mb-3"
+    Visible="false">
+
+    <asp:Label ID="lblUsuarioDemo" runat="server"
+        Text="Usuario creador (solo demostración)"
+        AssociatedControlID="ddlUsuarioDemo"
+        CssClass="form-label" />
+
+    <asp:DropDownList ID="ddlUsuarioDemo" runat="server"
+        CssClass="form-select" />
+
+</asp:Panel>
+
+
         <div class="col-md-6 mb-3">
 
             <asp:Label ID="lblTipo" runat="server" Text="Tipo de incidencia"  AssociatedControlID="ddlTipo" CssClass="form-label" />
@@ -34,7 +50,7 @@
         </div>
 </div>
     <div class="mb-3">
-        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Enabled="false" />
+        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="btnGuardar_Click" Enabled="true" />
         <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Cancelar</a>
 
     </div>

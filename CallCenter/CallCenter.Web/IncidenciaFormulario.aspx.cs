@@ -15,7 +15,9 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+
+
+            pnlUsuarioDemo.Visible = !Sesion.EstaLogueado;
 
             if (!IsPostBack)
             {
@@ -38,6 +40,23 @@ namespace CallCenter.Web
 
                 ddlPrioridad.Items.Insert(0, new ListItem("Seleccioná una prioridad", ""));
             }
+
+
+            if (pnlUsuarioDemo.Visible)
+            {
+                UsuarioNegocio negocioUsuarios = new UsuarioNegocio();
+
+                ddlUsuarioDemo.DataSource =
+                    negocioUsuarios.Listar().FindAll(u => u.Activo);
+
+                ddlUsuarioDemo.DataTextField = "NombreUsuario";
+                ddlUsuarioDemo.DataValueField = "Id";
+                ddlUsuarioDemo.DataBind();
+
+                ddlUsuarioDemo.Items.Insert(0,
+                    new ListItem("Seleccioná un usuario de prueba", ""));
+            }
+
         }
 
 
@@ -143,8 +162,45 @@ namespace CallCenter.Web
 
             nueva.Descripcion = txtDescripcion.Text;
 
+
+            int idUsuarioCreador;
+
+            if (Sesion.EstaLogueado)
+            {
+                idUsuarioCreador = Sesion.UsuarioId;
+            }
+            else
+            {
+                if (!Request.IsLocal)
+                {
+                    lblClienteEncontrado.Text = "Debés iniciar sesión.";
+                    lblClienteEncontrado.Visible = true;
+                    return;
+                }
+
+                if (!int.TryParse(ddlUsuarioDemo.SelectedValue,
+                    out idUsuarioCreador) || idUsuarioCreador <= 0)
+                {
+                    lblClienteEncontrado.Text = "Seleccioná un usuario de prueba.";
+                    lblClienteEncontrado.Visible = true;
+                    return;
+                }
+
+                Usuario usuarioPrueba =
+                    new UsuarioNegocio().ObtenerPorId(idUsuarioCreador);
+
+                if (usuarioPrueba == null || !usuarioPrueba.Activo)
+                {
+                    lblClienteEncontrado.Text =
+                        "El usuario de prueba no existe o está inactivo.";
+                    lblClienteEncontrado.Visible = true;
+                    return;
+                }
+            }
+
             nueva.UsuarioCreador = new Usuario();
-            nueva.UsuarioCreador.Id = Sesion.UsuarioId;
+            nueva.UsuarioCreador.Id = idUsuarioCreador;
+
 
             try
             {

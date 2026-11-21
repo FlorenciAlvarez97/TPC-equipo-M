@@ -51,6 +51,33 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.Label lblClienteEncontrado;
 
         /// <summary>
+        /// Control pnlUsuarioDemo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUsuarioDemo;
+
+        /// <summary>
+        /// Control lblUsuarioDemo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuarioDemo;
+
+        /// <summary>
+        /// Control ddlUsuarioDemo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUsuarioDemo;
+
+        /// <summary>
         /// Control lblTipo.
         /// </summary>
         /// <remarks>
