@@ -76,3 +76,19 @@ BEGIN
     );
 END;
 GO
+
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.sequences
+    WHERE name = 'SecuenciaNumeroIncidencia'
+      AND schema_id = SCHEMA_ID('dbo')
+)
+BEGIN
+    EXEC('CREATE SEQUENCE dbo.SecuenciaNumeroIncidencia
+          AS INT
+          START WITH 1
+          INCREMENT BY 1
+          NO CYCLE');
+END;
+GO
