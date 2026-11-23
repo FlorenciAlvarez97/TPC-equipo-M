@@ -15,47 +15,47 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
-            pnlUsuarioDemo.Visible = !Sesion.EstaLogueado;
-
             if (!IsPostBack)
             {
-                TipoIncidenciaNegocio negocioTipos = new TipoIncidenciaNegocio();
+                pnlUsuarioDemo.Visible = !Sesion.EstaLogueado;
 
-                ddlTipo.DataSource = negocioTipos.Listar().FindAll(t => t.Activo);
-                ddlTipo.DataTextField = "Nombre";
-                ddlTipo.DataValueField = "Id";
-                ddlTipo.DataBind();
+                if (pnlUsuarioDemo.Visible)
+                {
+                    UsuarioNegocio negocioUsuarios = new UsuarioNegocio();
 
-                ddlTipo.Items.Insert(0, new ListItem("Seleccioná un tipo de incidencia", ""));
+                    ddlUsuarioDemo.DataSource =
+                        negocioUsuarios.Listar().FindAll(u => u.Activo);
+
+                    ddlUsuarioDemo.DataTextField = "NombreUsuario";
+                    ddlUsuarioDemo.DataValueField = "Id";
+                    ddlUsuarioDemo.DataBind();
+
+                    ddlUsuarioDemo.Items.Insert(0,
+                        new ListItem("Seleccioná un usuario de prueba", ""));
+                }
+
+                 TipoIncidenciaNegocio negocioTipos = new TipoIncidenciaNegocio();
+
+                 ddlTipo.DataSource = negocioTipos.Listar().FindAll(t => t.Activo);
+                 ddlTipo.DataTextField = "Nombre";
+                 ddlTipo.DataValueField = "Id";
+                 ddlTipo.DataBind();
+
+                 ddlTipo.Items.Insert(0, new ListItem("Seleccioná un tipo de incidencia", ""));
 
 
-                PrioridadNegocio negocioPrioridades = new PrioridadNegocio();
+                 PrioridadNegocio negocioPrioridades = new PrioridadNegocio();
 
-                ddlPrioridad.DataSource = negocioPrioridades.Listar().FindAll(p => p.Activo);
-                ddlPrioridad.DataTextField = "Nombre";
-                ddlPrioridad.DataValueField = "Id";
-                ddlPrioridad.DataBind();
+                 ddlPrioridad.DataSource = negocioPrioridades.Listar().FindAll(p => p.Activo);
+                 ddlPrioridad.DataTextField = "Nombre";
+                 ddlPrioridad.DataValueField = "Id";
+                 ddlPrioridad.DataBind();
 
-                ddlPrioridad.Items.Insert(0, new ListItem("Seleccioná una prioridad", ""));
+                 ddlPrioridad.Items.Insert(0, new ListItem("Seleccioná una prioridad", ""));
             }
 
 
-            if (pnlUsuarioDemo.Visible)
-            {
-                UsuarioNegocio negocioUsuarios = new UsuarioNegocio();
 
-                ddlUsuarioDemo.DataSource =
-                    negocioUsuarios.Listar().FindAll(u => u.Activo);
-
-                ddlUsuarioDemo.DataTextField = "NombreUsuario";
-                ddlUsuarioDemo.DataValueField = "Id";
-                ddlUsuarioDemo.DataBind();
-
-                ddlUsuarioDemo.Items.Insert(0,
-                    new ListItem("Seleccioná un usuario de prueba", ""));
-            }
 
         }
 
@@ -207,6 +207,21 @@ namespace CallCenter.Web
                 IncidenciaNegocio negocioIncidencia = new IncidenciaNegocio();
 
                 negocioIncidencia.Agregar(nueva);
+
+                // Limpiar los campos después de guardar
+                txtNumeroCliente.Text = "";
+                txtDescripcion.Text = "";
+
+                ddlTipo.SelectedIndex = 0;
+                ddlPrioridad.SelectedIndex = 0;
+
+                if (pnlUsuarioDemo.Visible)
+                {
+                    ddlUsuarioDemo.SelectedIndex = 0;
+                }
+
+                // Limpiar el cliente confirmado
+                ViewState["IdClienteConfirmado"] = null;
 
                 lblClienteEncontrado.Text = "La incidencia se guardó correctamente.";
                 lblClienteEncontrado.Visible = true;
