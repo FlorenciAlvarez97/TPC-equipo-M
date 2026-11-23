@@ -13,7 +13,7 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            btnReasignar.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
             if (!IsPostBack)
             {
                 Cargarincidencias();
@@ -79,6 +79,38 @@ namespace CallCenter.Web
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 lblError.Text = "No se pudieron cargar los usuarios.";
+                lblError.Visible = true;
+            }
+        }
+
+        protected void btnReasignar_Click(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+            if (!Sesion.EstaLogueado || !(Sesion.EsSupervisor || Sesion.EsAdministrador))
+            {
+                lblError.Text = "No tiene permisos para reasignar la incidencia.";
+                lblError.Visible = true;
+                return;
+            }
+
+            int idincidencia;
+            int idnuevoresponsable;
+            if (!int.TryParse(Request.QueryString["id"], out idincidencia) || !int.TryParse(ddlNuevoResponsable.SelectedValue, out idnuevoresponsable))
+            {
+                lblError.Text = "Datos inválidos para reasignar la incidencia.";
+                lblError.Visible = true;
+                return;
+            }
+            try
+            {
+                IncidenciaGestionNegocio negocio = new IncidenciaGestionNegocio();
+                negocio.Reasignar(idincidencia, idnuevoresponsable, Sesion.UsuarioId);
+                Cargarincidencias();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "Ocurrió un error al reasignar la incidencia.";
                 lblError.Visible = true;
             }
         }

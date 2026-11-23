@@ -49,14 +49,12 @@
             <div class="mb-3">
                 <asp:Label ID="lblNuevoResponsable" runat="server" AssociatedControlID="ddlNuevoResponsable" CssClass="form-label" Text="Nuevo usuario responsable" />
                 <asp:DropDownList ID="ddlNuevoResponsable" runat="server" CssClass="form-select">
-                    <asp:ListItem Text="Seleccioná un usuario" Value="" Selected="True" />
-                    <asp:ListItem Text="Telefonista A" Value="demo-a" />
-                    <asp:ListItem Text="Telefonista B" Value="demo-b" />
+                   
                 </asp:DropDownList>
             </div>
 
             <div class="mb-4">
-                <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" Enabled="false" />
+               <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" OnClick="btnReasignar_Click" />
             </div>
 
             <h3 class="h5">Resolver incidencia</h3>
