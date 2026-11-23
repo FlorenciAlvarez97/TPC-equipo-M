@@ -9,19 +9,40 @@
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Número</th>
-                    <th scope="col">Fecha de alta</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Prioridad</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
+    
+<div class="table-responsive">
+
+    <asp:GridView ID="dgvIncidencias" runat="server"
+        AutoGenerateColumns="false"
+        CssClass="table table-striped table-bordered"
+        DataKeyNames="Id"
+        GridLines="None"
+        EmptyDataText="No hay incidencias registradas.">
+
+        <Columns>
+
+            <asp:BoundField DataField="Numero" HeaderText="Número" />
+            <asp:BoundField DataField="FechaAlta"  HeaderText="Fecha de alta" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
+            <asp:TemplateField HeaderText="Cliente"> 
+                <ItemTemplate>  <%# Eval("cliente.Nombre") %> <%# Eval("cliente.Apellido") %></ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Tipo">
+                <ItemTemplate> <%# Eval("Tipo.Nombre") %> </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Prioridad">
+                <ItemTemplate> <%# Eval("prioridad.Nombre") %> </ItemTemplate>
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Estado">
+                <ItemTemplate> <%# Eval("Estado.Nombre") %> </ItemTemplate>
+            </asp:TemplateField>
+
+        </Columns>
+
+    </asp:GridView>
+
+</div>
+
 </asp:Content>
