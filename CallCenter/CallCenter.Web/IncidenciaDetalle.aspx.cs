@@ -14,11 +14,12 @@ namespace CallCenter.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             btnReasignar.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
+            btnResolver.Enabled = Sesion.EstaLogueado;
             if (!IsPostBack)
             {
                 Cargarincidencias();
                 cargarresponsables();
-      
+
             }
 
         }
@@ -73,7 +74,7 @@ namespace CallCenter.Web
                 ddlNuevoResponsable.DataTextField = "Nombre";
                 ddlNuevoResponsable.DataValueField = "Id";
                 ddlNuevoResponsable.DataBind();
-       
+
             }
             catch (Exception ex)
             {
@@ -113,6 +114,66 @@ namespace CallCenter.Web
                 lblError.Text = "Ocurrió un error al reasignar la incidencia.";
                 lblError.Visible = true;
             }
+        }
+
+        protected void btnResolver_Click(Object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+            int idincidencia;
+            if (!Sesion.EstaLogueado || !int.TryParse(Request.QueryString["id"], out idincidencia))
+            {
+                lblError.Text = "No tiene permisos para resolver la incidencia.";
+                lblError.Visible = true;
+                return;
+
+            }
+
+            string resolucion = txtResolucion.Text.Trim();
+            if (resolucion == "")
+            {
+                lblError.Text = "Debe ingresar una resolución para la incidencia.";
+                lblError.Visible = true;
+                return;
+            }
+
+            try
+            {
+                IncidenciaGestionNegocio negocio = new IncidenciaGestionNegocio();
+                Incidencia incidencia = negocio.obtenerporid(idincidencia);
+                if (incidencia == null)
+                {
+                    lblError.Text = "La incidencia no fue encontrada.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                bool puede = Sesion.EsAdministrador || Sesion.EsSupervisor || incidencia.UsuarioAsignado.Id == Sesion.UsuarioId;
+                if (!puede)
+                {
+                    lblError.Text = "No tiene permisos para resolver esta incidencia.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                int estado = incidencia.Estado.Id;
+                if (estado != 2 && estado != 3 && estado != 6)
+                {
+                    lblError.Text = "La incidencia no se encuentra en un estado que permita ser resuelta.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                negocio.Resolver(idincidencia, resolucion, Sesion.UsuarioId);
+                Cargarincidencias();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "Ocurrió un error al resolver la incidencia.";
+                lblError.Visible = true;
+            }
+
+
         }
     }
 }

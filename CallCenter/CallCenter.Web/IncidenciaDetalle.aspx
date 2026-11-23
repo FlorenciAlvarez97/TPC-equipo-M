@@ -64,7 +64,7 @@
                 <p class="form-text">Describí cómo se resolvió la incidencia</p>
             </div>
             <div class="mb-4">
-                <asp:Button ID="btnResolver" runat="server" Text="Resolver" CssClass="btn btn-success" Enabled="false" />
+                <asp:Button ID="btnResolver" runat="server" Text="Resolver" CssClass="btn btn-success" OnClick="btnResolver_Click" />
             </div>
 
             <h3 class="h5">Cerrar incidencia</h3>
