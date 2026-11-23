@@ -59,7 +59,7 @@ namespace CallCenter.Negocio
             {
                 datos.CerrarConexion();
             }
-            
+
         }
 
         public List<Usuario> ListarUsuariosActivos()
@@ -85,7 +85,43 @@ namespace CallCenter.Negocio
             {
                 datos.CerrarConexion();
             }
-            
+
+        }
+
+        public void Reasignar(int idIncidencia, int idNuevoResponsable, int idUsuarioModifica)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET IdUsuarioAsignado = @IdNuevoResponsable, IdEstado = 2, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado <> 5;");
+                datos.SetearParametro("@IdNuevoResponsable", idNuevoResponsable);
+                datos.SetearParametro("@IdUsuarioModifica", idUsuarioModifica);
+                datos.SetearParametro("@IdIncidencia", idIncidencia);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+
+        public void Resolver(int idincidencia, string resolucion, int idusuariomodifica)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET Resolucion = @Resolucion, IdEstado = 4, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado IN (2, 3, 6);");
+                datos.SetearParametro("@Resolucion", resolucion);
+                datos.SetearParametro("@IdUsuarioModifica", idusuariomodifica);
+                datos.SetearParametro("@IdIncidencia", idincidencia);
+                datos.ejecutarAccion();
+
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
 
