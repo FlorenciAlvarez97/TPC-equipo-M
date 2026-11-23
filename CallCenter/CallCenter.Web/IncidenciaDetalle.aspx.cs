@@ -15,6 +15,7 @@ namespace CallCenter.Web
         {
             btnReasignar.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
             btnResolver.Enabled = Sesion.EstaLogueado;
+            btnCerrar.Enabled = Sesion.EstaLogueado;
             if (!IsPostBack)
             {
                 Cargarincidencias();
@@ -175,5 +176,65 @@ namespace CallCenter.Web
 
 
         }
+
+        protected void btnCerrar_Click(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+            int idincidencia;
+            if (!Sesion.EstaLogueado || !int.TryParse(Request.QueryString["id"], out idincidencia))
+            {
+                lblError.Text = "No tiene permisos para cerrar la incidencia.";
+                lblError.Visible = true;
+                return;
+
+            }
+
+            string comentario = txtComentarioCierre.Text.Trim();
+            if (comentario == "")
+            {
+                lblError.Text = "Debe ingresar un comentario para cerrar la incidencia.";
+                lblError.Visible = true;
+                return;
+            }
+
+            try
+            {
+                IncidenciaGestionNegocio negocio = new IncidenciaGestionNegocio();
+                Incidencia incidencia = negocio.obtenerporid(idincidencia);
+                if (incidencia == null)
+                {
+                    lblError.Text = "La incidencia no fue encontrada.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                bool puede = Sesion.EsAdministrador || Sesion.EsSupervisor || incidencia.UsuarioAsignado.Id == Sesion.UsuarioId;
+                if (!puede)
+                {
+                    lblError.Text = "No tiene permisos para cerrar esta incidencia.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                if (incidencia.Estado.Id != 4)
+                {
+                    lblError.Text = "La incidencia no se encuentra en un estado que permita ser cerrada.";
+                    lblError.Visible = true;
+                    return;
+                }
+
+                negocio.Cerrar(idincidencia, comentario, Sesion.UsuarioId);
+                Cargarincidencias();
+
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "Ocurrió un error al cerrar la incidencia.";
+                lblError.Visible = true;
+            }
+        }
+
     }
 }

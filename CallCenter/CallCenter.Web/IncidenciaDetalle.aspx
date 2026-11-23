@@ -76,7 +76,7 @@
             </div>
 
             <div class="mb-4">
-                <asp:Button ID="btnCerrar" runat="server" Text="Cerrar incidencia" CssClass="btn btn-danger" Enabled="false" />
+                <asp:Button ID="btnCerrar" runat="server" Text="Cerrar incidencia" CssClass="btn btn-danger" OnClick="btnCerrar_Click" />
             </div>
             <div class="mb-3">
                 <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Volver a incidencias</a>
