@@ -7,33 +7,34 @@
     <div class="row">
         <div class="col-md-6">
 
+            <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
             <div class="mb-3">
                 <label class="form-label">Número</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Fecha de alta</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtFechaAlta" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Cliente</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtCliente" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Tipo</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtTipo" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Prioridad</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtPrioridad" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Estado</label>
-                <input type="text" class="form-control" value="-" disabled />
+                <asp:TextBox ID="txtEstado" runat="server" CssClass="form-control" ReadOnly="true" />
             </div>
             <div class="mb-3">
                 <label class="form-label">Descripción</label>
-                <textarea class="form-control" rows="5" disabled></textarea>
+                <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" ReadOnly="true" />
             </div>
 
             <h2 class="h4">Gestión de la incidencia</h2>

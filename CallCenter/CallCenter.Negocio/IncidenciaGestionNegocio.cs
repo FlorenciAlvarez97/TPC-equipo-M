@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CallCenter.Negocio
 {
-    internal class IncidenciaGestionNegocio
+    public class IncidenciaGestionNegocio
     {
         private Incidencia ArmarIncidencia(AccesoDatos datos)
         {
