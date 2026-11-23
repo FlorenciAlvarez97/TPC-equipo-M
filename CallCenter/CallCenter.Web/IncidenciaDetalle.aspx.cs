@@ -17,6 +17,8 @@ namespace CallCenter.Web
             if (!IsPostBack)
             {
                 Cargarincidencias();
+                cargarresponsables();
+      
             }
 
         }
@@ -48,6 +50,7 @@ namespace CallCenter.Web
                 txtEstado.Text = inc.Estado.Nombre;
                 txtDescripcion.Text = inc.Descripcion;
                 txtUsuarioAsignado.Text = inc.UsuarioAsignado.Nombre;
+                ddlNuevoResponsable.SelectedValue = inc.UsuarioAsignado.Id.ToString();
 
 
             }
@@ -58,6 +61,25 @@ namespace CallCenter.Web
                 lblError.Text = "Ocurrió un error al cargar la incidencia.";
                 lblError.Visible = true;
 
+            }
+        }
+
+        private void cargarresponsables()
+        {
+            try
+            {
+                IncidenciaGestionNegocio negocio = new IncidenciaGestionNegocio();
+                ddlNuevoResponsable.DataSource = negocio.ListarUsuariosActivos();
+                ddlNuevoResponsable.DataTextField = "Nombre";
+                ddlNuevoResponsable.DataValueField = "Id";
+                ddlNuevoResponsable.DataBind();
+       
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                lblError.Text = "No se pudieron cargar los usuarios.";
+                lblError.Visible = true;
             }
         }
     }
