@@ -62,6 +62,32 @@ namespace CallCenter.Negocio
             
         }
 
+        public List<Usuario> ListarUsuariosActivos()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta("SELECT Id, Nombre FROM dbo.Usuarios WHERE Activo = 1 ORDER BY Nombre;");
+                datos.Leer();
+                while (datos.Lector.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Id = (int)datos.Lector["Id"];
+                    usuario.Nombre = (string)datos.Lector["Nombre"].ToString();
+                    lista.Add(usuario);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+            
+        }
+
 
     }
 }

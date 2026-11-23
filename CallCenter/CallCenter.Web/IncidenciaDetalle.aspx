@@ -83,14 +83,6 @@
             <div class="mb-3">
                 <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Volver a incidencias</a>
             </div>
-
-            <div class="mb-4">
-                <asp:Button ID="btnSinResolver" runat="server" Text="Sin Resolver" CssClass="btn btn-danger" Enabled="false" />
-            </div>
-
-            <div class="mb-3">
-                <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Volver a incidencias</a>
-            </div>
         </div>
     </div>
 </asp:Content>
