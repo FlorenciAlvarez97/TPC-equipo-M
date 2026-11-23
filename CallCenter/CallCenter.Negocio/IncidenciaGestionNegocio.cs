@@ -122,6 +122,26 @@ namespace CallCenter.Negocio
             {
                 datos.CerrarConexion();
             }
+
+
+        }
+
+        public void Cerrar(int idincidencia, string comentariocierre, int idusuariomodificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET ComentarioCierre = @ComentarioCierre, IdEstado = 5, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado = 4;");
+                datos.SetearParametro("@ComentarioCierre", comentariocierre);
+                datos.SetearParametro("@IdUsuarioModifica", idusuariomodificado);
+                datos.SetearParametro("@IdIncidencia", idincidencia);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
         }
 
 
