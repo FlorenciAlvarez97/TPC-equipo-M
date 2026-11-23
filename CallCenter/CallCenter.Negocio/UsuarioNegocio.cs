@@ -230,9 +230,9 @@ namespace CallCenter.Negocio
             try
             {
 
-                datos.ValidarConsulta("SELECT Id, Nombre, NombreUsuario, IdRol, Activo FROM dbo.Usuarios WHERE NombreUsuario = @NombreUsuario AND Contrasena = @Contrasena;");
+                datos.ValidarConsulta("SELECT u.Id, u.Nombre, u.NombreUsuario, u.IdRol, r.Nombre AS NombreRol, u.Activo FROM dbo.Usuarios u INNER JOIN dbo.Roles r ON r.Id = u.IdRol WHERE u.NombreUsuario = @NombreUsuario AND u.Contrasena = @Contrasena AND u.Activo = 1;");
                 datos.SetearParametro("@NombreUsuario", nombreUsuario);
-                datos.SetearParametro("@Contrasena", contrasena);
+                datos.SetearParametro("@Contrasena", HashearContrasena(contrasena));
                 datos.Leer();
                 if(datos.Lector.Read())
                 {
