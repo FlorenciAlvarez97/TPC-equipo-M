@@ -49,12 +49,11 @@
             <div class="mb-3">
                 <asp:Label ID="lblNuevoResponsable" runat="server" AssociatedControlID="ddlNuevoResponsable" CssClass="form-label" Text="Nuevo usuario responsable" />
                 <asp:DropDownList ID="ddlNuevoResponsable" runat="server" CssClass="form-select">
-                   
                 </asp:DropDownList>
             </div>
 
             <div class="mb-4">
-               <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" OnClick="btnReasignar_Click" />
+                <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" OnClick="btnReasignar_Click" />
             </div>
 
             <h3 class="h5">Resolver incidencia</h3>
@@ -77,6 +76,10 @@
 
             <div class="mb-4">
                 <asp:Button ID="btnCerrar" runat="server" Text="Cerrar incidencia" CssClass="btn btn-danger" OnClick="btnCerrar_Click" />
+            </div>
+            <h3 class="h5">Reabrir incidencia</h3>
+            <div class="mb-4">
+                <asp:Button ID="btnReabrir" runat="server" Text="Reabrir incidencia" CssClass="btn btn-warning" OnClick="btnReabrir_Click" />
             </div>
             <div class="mb-3">
                 <a runat="server" href="~/Incidencias.aspx" class="btn btn-secondary">Volver a incidencias</a>
