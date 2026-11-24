@@ -41,6 +41,10 @@
                    <ItemTemplate> <div class="text-truncate" style="max-width: 240px;"> <%#: Eval("Descripcion") %> </div> </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:TemplateField HeaderText="Seguimientos">
+                <ItemTemplate><div class="text-truncate" style="max-width: 240px;"> <%#: string.IsNullOrWhiteSpace(Eval("UltimoSeguimiento") as string) ? "Sin seguimientos" : (string)Eval("UltimoSeguimiento") %> </div></ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="Estado">
                 <ItemTemplate> <%# Eval("Estado.Nombre") %> </ItemTemplate>
             </asp:TemplateField>
@@ -57,13 +61,9 @@
                 <ItemTemplate>  <%# Eval("UsuarioUltimaModificacion") == null ? "-" : Eval("UsuarioUltimaModificacion.Nombre") %></ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Actividad">
-                <ItemTemplate>  <%# Eval("FechaUltimaModificacion") == null  ? "Solo alta" : "Con modificaciones" %> </ItemTemplate>
-            </asp:TemplateField>
+        
 
-            <asp:TemplateField HeaderText="Seguimientos">
-                <ItemTemplate> <span class="text-muted"> Por implementar</span> </ItemTemplate>
-            </asp:TemplateField>
+            
         </Columns>
 
     </asp:GridView>

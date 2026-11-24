@@ -91,12 +91,13 @@ namespace CallCenter.Negocio
 
             try
             {
-                datos.ValidarConsulta(@"SELECT i.Id,i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.IdCliente, c.Nombre AS NombreCliente,c.Apellido AS ApellidoCliente,
-                                       i.IdTipoIncidencia, t.Nombre AS NombreTipo, i.IdPrioridad, p.Nombre AS NombrePrioridad, i.IdEstado, e.Nombre AS NombreEstado, i.IdUsuarioCreador,
-                                       uc.Nombre AS NombreUsuarioCreador, i.IdUsuarioAsignado, ua.Nombre AS NombreUsuarioAsignado, i.IdUsuarioUltimaModificacion,  um.Nombre AS NombreUsuarioUltimaModificacion
-                                      FROM dbo.Incidencias i INNER JOIN dbo.Clientes c  ON i.IdCliente = c.Id  INNER JOIN dbo.TiposIncidencia t ON i.IdTipoIncidencia = t.Id INNER JOIN dbo.Prioridades p
-                                      ON i.IdPrioridad = p.Id INNER JOIN dbo.EstadosIncidencia e ON i.IdEstado = e.Id INNER JOIN dbo.Usuarios uc ON i.IdUsuarioCreador = uc.Id INNER JOIN dbo.Usuarios ua
-                                      ON i.IdUsuarioAsignado = ua.Id LEFT JOIN dbo.Usuarios um ON i.IdUsuarioUltimaModificacion = um.Id ORDER BY i.FechaAlta DESC, i.Id DESC;");
+                datos.ValidarConsulta( @"SELECT i.Id, i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.IdCliente, c.Nombre AS NombreCliente,
+                              c.Apellido AS ApellidoCliente, i.IdTipoIncidencia, t.Nombre AS NombreTipo, i.IdPrioridad, p.Nombre AS NombrePrioridad, i.IdEstado, e.Nombre AS NombreEstado,
+                              i.IdUsuarioCreador, uc.Nombre AS NombreUsuarioCreador, i.IdUsuarioAsignado, ua.Nombre AS NombreUsuarioAsignado, i.IdUsuarioUltimaModificacion,
+                              um.Nombre AS NombreUsuarioUltimaModificacion, (SELECT TOP 1 h.Comentario FROM dbo.HistorialIncidencia h WHERE h.IdIncidencia = i.Id ORDER BY h.Fecha DESC, h.Id DESC)
+                              AS UltimoSeguimiento FROM dbo.Incidencias i INNER JOIN dbo.Clientes c ON i.IdCliente = c.Id  INNER JOIN dbo.TiposIncidencia t ON i.IdTipoIncidencia = t.Id
+                              INNER JOIN dbo.Prioridades p ON i.IdPrioridad = p.Id INNER JOIN dbo.EstadosIncidencia e ON i.IdEstado = e.Id INNER JOIN dbo.Usuarios uc ON i.IdUsuarioCreador = uc.Id
+                              INNER JOIN dbo.Usuarios ua ON i.IdUsuarioAsignado = ua.Id LEFT JOIN dbo.Usuarios um ON i.IdUsuarioUltimaModificacion = um.Id ORDER BY i.FechaAlta DESC, i.Id DESC;");
 
                 datos.Leer();
 
@@ -109,6 +110,7 @@ namespace CallCenter.Negocio
                     incidencia.FechaAlta = (DateTime)datos.Lector["FechaAlta"];
                     incidencia.FechaUltimaModificacion = datos.Lector["FechaUltimaModificacion"] == DBNull.Value ? (DateTime?)null : (DateTime)datos.Lector["FechaUltimaModificacion"];
                     incidencia.Descripcion = (string)datos.Lector["Descripcion"];
+                    incidencia.UltimoSeguimiento = datos.Lector["UltimoSeguimiento"] == DBNull.Value ? null : (string)datos.Lector["UltimoSeguimiento"];
 
                     incidencia.cliente = new Cliente();
                     incidencia.cliente.Id = (int)datos.Lector["IdCliente"];

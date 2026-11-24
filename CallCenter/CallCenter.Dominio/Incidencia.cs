@@ -21,6 +21,7 @@ namespace CallCenter.Dominio
         public Usuario UsuarioAsignado { get; set; }
         public Usuario UsuarioUltimaModificacion { get; set; }
         public EstadoIncidencia Estado {  get; set; }
+        public string UltimoSeguimiento { get; set; }
         public Prioridad prioridad { get; set; }
         public bool Activo  { get; set; }
 
