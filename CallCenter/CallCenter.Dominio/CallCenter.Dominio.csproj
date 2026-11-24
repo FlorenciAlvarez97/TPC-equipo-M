@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Cliente.cs" />
     <Compile Include="EstadoIncidencia.cs" />
+    <Compile Include="HistorialIncidencia.cs" />
     <Compile Include="Incidencia.cs" />
     <Compile Include="Prioridad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
