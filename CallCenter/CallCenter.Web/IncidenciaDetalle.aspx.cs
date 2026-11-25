@@ -17,6 +17,8 @@ namespace CallCenter.Web
             btnResolver.Enabled = Sesion.EstaLogueado;
             btnCerrar.Enabled = Sesion.EstaLogueado;
             btnReabrir.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
+            btnGuardarGestion.Enabled = Sesion.EstaLogueado;
+
             if (!IsPostBack)
             {
                 Cargarincidencias();
@@ -286,5 +288,72 @@ namespace CallCenter.Web
             }
         }
 
+
+        protected void ddlTipoGestion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlTipoGestion.SelectedValue)
+            {
+                case "resolver":
+                    lblComentarioSeguimiento.Text = "Resolución (obligatoria)";
+                    break;
+
+                case "cerrar":
+                    lblComentarioSeguimiento.Text = "Comentario final de cierre (obligatorio)";
+                    break;
+
+                case "reabrir":
+                    lblComentarioSeguimiento.Text = "Comentario de reapertura";
+                    break;
+
+                default:
+                    lblComentarioSeguimiento.Text = "Comentario de la gestión";
+                    break;
+            }
+        }
+
+
+        protected void btnGuardarGestion_Click(object sender, EventArgs e)
+        {
+            lblError.Visible = false;
+            lblError.CssClass = "alert alert-danger d-block";
+
+            if (!Sesion.EstaLogueado)
+            {
+                lblError.Text = "Debés iniciar sesión.";
+                lblError.Visible = true;
+                return;
+            }
+
+            string comentario = txtComentarioSeguimiento.Text.Trim();
+
+            switch (ddlTipoGestion.SelectedValue)
+            {
+                case "seguimiento":
+                    lblError.Text = "El registro de seguimientos está pendiente.";
+                    lblError.Visible = true;
+                    break;
+
+                case "resolver":
+                    txtResolucion.Text = comentario;
+                    btnResolver_Click(sender, e);
+                    break;
+
+                case "cerrar":
+                    txtComentarioCierre.Text = comentario;
+                    btnCerrar_Click(sender, e);
+                    break;
+
+                case "reabrir":
+                    btnReabrir_Click(sender, e);
+                    break;
+
+                default:
+                    lblError.Text = "Seleccioná una gestión válida.";
+                    lblError.Visible = true;
+                    break;
+            }
+        }
+
     }
+
 }

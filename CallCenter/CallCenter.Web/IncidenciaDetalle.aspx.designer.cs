@@ -33,15 +33,6 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.TextBox txtNumero;
 
         /// <summary>
-        /// Control txtFechaAlta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaAlta;
-
-        /// <summary>
         /// Control txtCliente.
         /// </summary>
         /// <remarks>
@@ -78,6 +69,15 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.TextBox txtEstado;
 
         /// <summary>
+        /// Control txtFechaAlta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFechaAlta;
+
+        /// <summary>
         /// Control txtDescripcion.
         /// </summary>
         /// <remarks>
@@ -87,49 +87,49 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.TextBox txtDescripcion;
 
         /// <summary>
-        /// Control lblUsuarioAsignado.
+        /// Control lblTipoGestion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUsuarioAsignado;
+        protected global::System.Web.UI.WebControls.Label lblTipoGestion;
 
         /// <summary>
-        /// Control txtUsuarioAsignado.
+        /// Control ddlTipoGestion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioAsignado;
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoGestion;
 
         /// <summary>
-        /// Control lblNuevoResponsable.
+        /// Control lblComentarioSeguimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNuevoResponsable;
+        protected global::System.Web.UI.WebControls.Label lblComentarioSeguimiento;
 
         /// <summary>
-        /// Control ddlNuevoResponsable.
+        /// Control txtComentarioSeguimiento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNuevoResponsable;
+        protected global::System.Web.UI.WebControls.TextBox txtComentarioSeguimiento;
 
         /// <summary>
-        /// Control btnReasignar.
+        /// Control btnGuardarGestion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReasignar;
+        protected global::System.Web.UI.WebControls.Button btnGuardarGestion;
 
         /// <summary>
         /// Control lblResolucion.
@@ -193,5 +193,50 @@ namespace CallCenter.Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnReabrir;
+
+        /// <summary>
+        /// Control lblUsuarioAsignado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsuarioAsignado;
+
+        /// <summary>
+        /// Control txtUsuarioAsignado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtUsuarioAsignado;
+
+        /// <summary>
+        /// Control lblNuevoResponsable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNuevoResponsable;
+
+        /// <summary>
+        /// Control ddlNuevoResponsable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNuevoResponsable;
+
+        /// <summary>
+        /// Control btnReasignar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReasignar;
     }
 }
