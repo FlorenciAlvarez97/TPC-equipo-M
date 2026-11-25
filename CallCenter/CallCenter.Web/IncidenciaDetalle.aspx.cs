@@ -23,6 +23,7 @@ namespace CallCenter.Web
             {
                 Cargarincidencias();
                 cargarresponsables();
+                CargarHistorial();
 
             }
 
@@ -329,9 +330,85 @@ namespace CallCenter.Web
             switch (ddlTipoGestion.SelectedValue)
             {
                 case "seguimiento":
-                    lblError.Text = "El registro de seguimientos está pendiente.";
-                    lblError.Visible = true;
-                    break;
+                    {
+                        if (string.IsNullOrWhiteSpace(comentario))
+                        {
+                            lblError.Text = "Debés escribir un comentario";
+                            lblError.Visible = true;
+                            return;
+                        }
+
+                        if (comentario.Length > 1000)
+                        {
+                            lblError.Text = "El comentario no puede superar los 1000 caracteres";
+                            lblError.Visible = true;
+                            return;
+                        }
+
+                        int idIncidencia;
+
+                        if (!int.TryParse(Request.QueryString["id"], out idIncidencia)
+                            || idIncidencia <= 0)
+                        {
+                            lblError.Text = "La incidencia no es válida";
+                            lblError.Visible = true;
+                            return;
+                        }
+
+                        try
+                        {
+                            IncidenciaGestionNegocio negocioIncidencia = new IncidenciaGestionNegocio();
+
+                            Incidencia incidencia = negocioIncidencia.obtenerporid(idIncidencia);
+
+                            if (incidencia == null)
+                            {
+                                lblError.Text = "No se encontró la incidencia.";
+                                lblError.Visible = true;
+                                return;
+                            }
+
+                            if (incidencia.Estado.Id == 5)
+                            {
+                                lblError.Text = "No se pueden agregar seguimientos a una incidencia cerrada";
+                                lblError.Visible = true;
+                                return;
+                            }
+
+                            HistorialIncidencia nuevo = new HistorialIncidencia();
+
+                            nuevo.Incidencia = incidencia;
+
+                            nuevo.Usuario = new Usuario();
+                            nuevo.Usuario.Id = Sesion.UsuarioId;
+
+                            nuevo.Comentario = comentario;
+
+                            HistorialIncidenciaNegocio negocioHistorial = new HistorialIncidenciaNegocio();
+
+                            negocioHistorial.Agregar(nuevo);
+
+                            // Actualizar el historial que aparece en pantalla
+                            dgvHistorial.DataSource = negocioHistorial.ListarPorIncidencia(idIncidencia);
+                            dgvHistorial.DataBind();
+
+                            // Limpiar el comentario
+                            txtComentarioSeguimiento.Text = "";
+
+                            lblError.CssClass = "alert alert-success d-block";
+                            lblError.Text = "Seguimiento guardado correctamente.";
+                            lblError.Visible = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                            lblError.Text = "No se pudo guardar el seguimiento.";
+                            lblError.Visible = true;
+                        }
+
+                        break;
+                    }
 
                 case "resolver":
                     txtResolucion.Text = comentario;
@@ -353,6 +430,33 @@ namespace CallCenter.Web
                     break;
             }
         }
+
+        private void CargarHistorial()
+        {
+            int idIncidencia;
+
+            if (!int.TryParse(Request.QueryString["id"], out idIncidencia)|| idIncidencia <= 0)
+            {
+                return;
+            }
+
+            try
+            {
+                HistorialIncidenciaNegocio negocio = new HistorialIncidenciaNegocio();
+
+                dgvHistorial.DataSource = negocio.ListarPorIncidencia(idIncidencia);
+                dgvHistorial.DataBind();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                lblError.CssClass = "alert alert-danger d-block";
+                lblError.Text = "No se pudo cargar el historial de seguimientos.";
+                lblError.Visible = true;
+            }
+        }
+
 
     }
 

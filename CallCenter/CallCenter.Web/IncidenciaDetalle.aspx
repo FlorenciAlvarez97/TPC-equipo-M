@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="col-md-4">
-             <div class="card-mb-4">
+             <div class="card mb-4">
                   <div class="card-header fw-bold">
                       <h3 class="h5">Reasignar incidencia</h3>
                   </div>
@@ -150,6 +150,30 @@
                       <div class="mb-4">
                           <asp:Button ID="btnReasignar" runat="server" Text="Reasignar" CssClass="btn btn-primary" OnClick="btnReasignar_Click" />
                      </div>
+                 </div>
+             </div>
+             <div class="card mb-4">
+                 <div class="card-header fw-bold"> Historial de seguimientos</div>
+                 <div class="card-body">
+                     <asp:GridView ID="dgvHistorial" runat="server" AutoGenerateColumns="false" CssClass="table table-borderless" GridLines="None" ShowHeader="false" EmptyDataText="Todavía no hay seguimientos registrados.">
+                         <Columns>
+                             <asp:TemplateField>
+                                 <ItemTemplate>
+                                     <div class="border-bottom pb-3 mb-3">
+                                         <div class="fw-bold">
+                                             <%#: Eval("Fecha", "{0:dd/MM/yyyy HH:mm}") %>
+                                         </div>
+                                         <div class="text-muted small"> 
+                                             <%#: Eval("Usuario.Nombre") %> <%#: Eval("EstadoResultante.Nombre") %>
+                                         </div>
+                                         <div class="mt-2 text-break">
+                                             <%#: Eval("Comentario") %>
+                                         </div>
+                                     </div>
+                                 </ItemTemplate>
+                             </asp:TemplateField>
+                         </Columns>
+                     </asp:GridView>
                  </div>
              </div>
          </div>
