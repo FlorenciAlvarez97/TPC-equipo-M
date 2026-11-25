@@ -59,7 +59,6 @@ namespace CallCenter.Web
 
         }
 
-
         protected void btnBuscarCliente_Click(object sender, EventArgs e)
         {
 
@@ -206,9 +205,30 @@ namespace CallCenter.Web
             {
                 IncidenciaNegocio negocioIncidencia = new IncidenciaNegocio();
 
-                negocioIncidencia.Agregar(nueva);
+                int numeroGenerado = negocioIncidencia.Agregar(nueva);
 
-                // Limpiar los campos después de guardar
+                // Prepara el correo
+                bool correoEnviado = false;
+
+                try
+                {
+                    EmailService servicio = new EmailService();
+
+                    string asunto = "Alta de incidencia Nº " + numeroGenerado;
+
+                    string cuerpo = "Hola " + cliente.Nombre + " " + cliente.Apellido + ",\n\n" + "Tu reclamo fue registrado correctamente.\n\n" + "Número de reclamo: " + numeroGenerado + "\n" +
+                                    "Tipo de incidencia: " + ddlTipo.SelectedItem.Text + "\n" + "Prioridad: " + ddlPrioridad.SelectedItem.Text + "\n" + "Estado: Abierto\n" +
+                                    "Descripción: " + nueva.Descripcion + "\n\n" + "Conservá este número para consultar tu reclamo.\n\n" + "Sistema Call Center";
+
+                    servicio.ArmarCorreo(cliente.Email, asunto, cuerpo);
+                    servicio.EnviarCorreo();
+                    correoEnviado = true;
+                }
+                catch (Exception errorCorreo)
+                {
+                    System.Diagnostics.Debug.WriteLine(errorCorreo.ToString());
+                }
+
                 txtNumeroCliente.Text = "";
                 txtDescripcion.Text = "";
 
@@ -220,10 +240,18 @@ namespace CallCenter.Web
                     ddlUsuarioDemo.SelectedIndex = 0;
                 }
 
-                // Limpiar el cliente confirmado
                 ViewState["IdClienteConfirmado"] = null;
 
-                lblClienteEncontrado.Text = "La incidencia se guardó correctamente.";
+
+                if (correoEnviado)
+                {
+                    lblClienteEncontrado.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente. Correo de prueba enviado a Mailtrap.";
+                }
+                else
+                {
+                    lblClienteEncontrado.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente, pero no se pudo enviar el correo de prueba.";
+                }
+
                 lblClienteEncontrado.Visible = true;
             }
             catch (ArgumentException ex)

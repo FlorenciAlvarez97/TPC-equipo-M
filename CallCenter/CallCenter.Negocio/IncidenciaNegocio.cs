@@ -12,7 +12,8 @@ namespace CallCenter.Negocio
     public class IncidenciaNegocio
     {
 
-        public void Agregar(Incidencia nueva)
+        public int Agregar(Incidencia nueva)
+
         {
 
             ValidarDatos(nueva);
@@ -22,7 +23,7 @@ namespace CallCenter.Negocio
             try
             {
 
-                datos.ValidarConsulta(@"INSERT INTO dbo.Incidencias( Numero, Descripcion, IdCliente, IdTipoIncidencia, IdPrioridad, IdUsuarioCreador, IdUsuarioAsignado)
+                datos.ValidarConsulta(@"INSERT INTO dbo.Incidencias( Numero, Descripcion, IdCliente, IdTipoIncidencia, IdPrioridad, IdUsuarioCreador, IdUsuarioAsignado)  OUTPUT INSERTED.Numero
                                       VALUES (NEXT VALUE FOR dbo.SecuenciaNumeroIncidencia, @Descripcion, @IdCliente, @IdTipoIncidencia, @IdPrioridad, @IdUsuarioCreador, @IdUsuarioAsignado );");
 
 
@@ -33,7 +34,11 @@ namespace CallCenter.Negocio
                 datos.SetearParametro("@IdUsuarioCreador", nueva.UsuarioCreador.Id);
                 datos.SetearParametro("@IdUsuarioAsignado", nueva.UsuarioCreador.Id);
 
-                datos.ejecutarAccion();
+
+                int numeroGenerado = Convert.ToInt32(datos.EjecutarEscalar());
+
+                return numeroGenerado;
+
             }
             finally
             {
