@@ -22,6 +22,8 @@
                 <asp:ListItem Text="Tipo de incidencia" Value="tipo" />
                 <asp:ListItem Text="Prioridad" Value="prioridad" />
                 <asp:ListItem Text="Estado" Value="estado" />
+                <asp:ListItem Text="Descripción" Value="descripcion" />
+                <asp:ListItem Text="Último seguimiento" Value="seguimiento" />
                 <asp:ListItem Text="Usuario creador" Value="creador" />
                 <asp:ListItem Text="Usuario asignado" Value="asignado" />
                 <asp:ListItem Text="Último usuario" Value="ultimoUsuario" />
@@ -56,10 +58,6 @@
                 <ItemTemplate>  <asp:HyperLink ID="lnkDetalle" runat="server" Text='<%# Eval("Numero") %>' NavigateUrl='<%# "IncidenciaDetalle.aspx?id=" + Eval("Id") %>' CssClass="fw-bold" /> </ItemTemplate>
             </asp:TemplateField>
             
-            <asp:BoundField DataField="FechaAlta"  HeaderText="Fecha de alta" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
-            
-            <asp:BoundField DataField="FechaUltimaModificacion"  HeaderText="Última modificación"  DataFormatString="{0:dd/MM/yyyy HH:mm}"  HtmlEncode="false" NullDisplayText="Sin modificaciones" />
-            
             <asp:TemplateField HeaderText="Cliente"> 
                 <ItemTemplate> <%#: Eval("cliente.Id") %>  <%# Eval("cliente.Nombre") %> <%# Eval("cliente.Apellido") %></ItemTemplate>
             </asp:TemplateField>
@@ -84,6 +82,8 @@
                 <ItemTemplate> <%# Eval("Estado.Nombre") %> </ItemTemplate>
             </asp:TemplateField>
 
+            <asp:BoundField DataField="FechaAlta"  HeaderText="Fecha de alta" DataFormatString="{0:dd/MM/yyyy HH:mm}" HtmlEncode="false" />
+
             <asp:TemplateField HeaderText="Usuario creador">
                 <ItemTemplate>  <%# Eval("UsuarioCreador") == null? "Pendiente" : Eval("UsuarioCreador.Nombre") %> </ItemTemplate>
             </asp:TemplateField>
@@ -92,10 +92,14 @@
                 <ItemTemplate> <%# Eval("UsuarioAsignado") == null  ? "Pendiente" : Eval("UsuarioAsignado.Nombre") %></ItemTemplate>
             </asp:TemplateField>
 
+            <asp:BoundField DataField="FechaUltimaModificacion"  HeaderText="Última modificación"  DataFormatString="{0:dd/MM/yyyy HH:mm}"  HtmlEncode="false" NullDisplayText="Sin modificaciones" />
+
             <asp:TemplateField HeaderText="Último usuario">
                 <ItemTemplate>  <%# Eval("UsuarioUltimaModificacion") == null ? "-" : Eval("UsuarioUltimaModificacion.Nombre") %></ItemTemplate>
             </asp:TemplateField>
 
+            
+            
         
 
             

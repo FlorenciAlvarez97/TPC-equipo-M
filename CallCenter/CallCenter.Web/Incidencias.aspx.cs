@@ -21,10 +21,7 @@ namespace CallCenter.Web
                 IncidenciaNegocio negocio = new IncidenciaNegocio();
 
                 List<Incidencia> lista = negocio.Listar();
-                if (Sesion.EsTelefonista)
-                {
-                    lista = lista.Where(i => i.UsuarioAsignado != null && i.UsuarioAsignado.Id == Sesion.UsuarioId).ToList();
-                }
+               
                 dgvIncidencias.DataSource = lista;
 
                 dgvIncidencias.DataBind();
@@ -42,10 +39,7 @@ namespace CallCenter.Web
             IncidenciaNegocio negocio = new IncidenciaNegocio();
 
             List<Incidencia> lista = negocio.Listar();
-            if (Sesion.EsTelefonista)
-            {
-                lista = lista.Where(i => i.UsuarioAsignado != null && i.UsuarioAsignado.Id == Sesion.UsuarioId).ToList();
-            }
+            
             dgvIncidencias.DataSource = lista;
 
             // Buscar por número exacto
