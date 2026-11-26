@@ -24,6 +24,33 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
+        /// Control txtBuscarTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarTipo;
+
+        /// <summary>
+        /// Control ddlEstadoTipo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoTipo;
+
+        /// <summary>
+        /// Control btnBuscarTipos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarTipos;
+
+        /// <summary>
         /// Control dgvTiposIncidencia.
         /// </summary>
         /// <remarks>

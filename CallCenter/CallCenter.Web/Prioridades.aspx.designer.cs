@@ -24,6 +24,33 @@ namespace CallCenter.Web
         protected global::System.Web.UI.WebControls.Label lblError;
 
         /// <summary>
+        /// Control txtBuscarPrioridad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBuscarPrioridad;
+
+        /// <summary>
+        /// Control ddlEstadoPrioridad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstadoPrioridad;
+
+        /// <summary>
+        /// Control btnBuscarPrioridades.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnBuscarPrioridades;
+
+        /// <summary>
         /// Control dgvPrioridades.
         /// </summary>
         /// <remarks>

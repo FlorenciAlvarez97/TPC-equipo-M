@@ -27,9 +27,30 @@ namespace CallCenter.Web
             {
                 lblError.Visible = false;
 
+
                 TipoIncidenciaNegocio negocio = new TipoIncidenciaNegocio();
-                dgvTiposIncidencia.DataSource = negocio.Listar();
+                var lista = negocio.Listar();
+
+                string busqueda = txtBuscarTipo.Text.Trim();
+                string estado = ddlEstadoTipo.SelectedValue;
+
+                if (busqueda != "")
+                {
+                    lista = lista.Where(t => (t.Nombre ?? "").IndexOf( busqueda, StringComparison.OrdinalIgnoreCase) >= 0 || (t.Descripcion ?? "").IndexOf( busqueda, StringComparison.OrdinalIgnoreCase) >= 0 ).ToList();
+                }
+
+                if (estado == "1")
+                {
+                    lista = lista.Where(t => t.Activo).ToList();
+                }
+                else if (estado == "0")
+                {
+                    lista = lista.Where(t => !t.Activo).ToList();
+                }
+
+                dgvTiposIncidencia.DataSource = lista;
                 dgvTiposIncidencia.DataBind();
+
             }
             catch (Exception ex)
             {
@@ -38,6 +59,12 @@ namespace CallCenter.Web
                 lblError.Text = Server.HtmlEncode(ex.ToString());
                 lblError.Visible = true;
             }
+        }
+
+
+        protected void btnBuscarTipos_Click(object sender, EventArgs e)
+        {
+            CargarTiposIncidencia();
         }
 
         protected void dgvTiposIncidencia_SelectedIndexChanged(Object sender, EventArgs e)

@@ -11,7 +11,25 @@
     </div>
 
      <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
+    
+    <div class="mb-4">
+        <div class="d-flex gap-3 align-items-end flex-wrap">
+            <div>
+                <asp:Label runat="server" AssociatedControlID="txtBuscarTipo" Text="Nombre" CssClass="form-label" />
+                <asp:TextBox ID="txtBuscarTipo" runat="server" CssClass="form-control" placeholder="Ingresá tu búsqueda" />
+            </div>
+         <div>
+         <asp:Label runat="server" AssociatedControlID="ddlEstadoTipo" Text="Estado" CssClass="form-label" />
+             <asp:DropDownList ID="ddlEstadoTipo"  runat="server" CssClass="form-select">   
+                 <asp:ListItem Text="Todos" Value="" />
+                 <asp:ListItem Text="Activos" Value="1" />
+                 <asp:ListItem Text="Inactivos" Value="0" />
+             </asp:DropDownList>
+         </div>
 
+         <asp:Button ID="btnBuscarTipos" runat="server" Text="Buscar" CssClass="btn btn-primary" CausesValidation="false" OnClick="btnBuscarTipos_Click" />
+    </div>
+</div>
     
     <div class="table-responsive">
         <asp:GridView ID="dgvTiposIncidencia"

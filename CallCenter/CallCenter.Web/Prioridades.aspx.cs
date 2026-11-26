@@ -26,7 +26,31 @@ namespace CallCenter.Web
                 lblError.Visible = false;
            
                 PrioridadNegocio negocio = new PrioridadNegocio();
-                dgvPrioridades.DataSource = negocio.Listar();
+                var lista = negocio.Listar();
+
+                string busqueda = txtBuscarPrioridad.Text.Trim();
+                string estado = ddlEstadoPrioridad.SelectedValue;
+
+                if (busqueda != "")
+                {
+                    int nivel;
+                    bool esNivel = int.TryParse(busqueda, out nivel);
+
+                    lista = lista.Where (p => p.Nombre.IndexOf(busqueda, StringComparison.OrdinalIgnoreCase) >= 0 || (esNivel && p.Nivel == nivel)).ToList();
+                }
+
+                if (estado != "1")
+                {
+                    lista = lista.Where(P => P.Activo).ToList();
+
+                }
+
+                else if (estado != "0") 
+                {
+                    lista = lista.Where(p => !p.Activo).ToList();
+                }
+
+                dgvPrioridades.DataSource = lista;
                 dgvPrioridades.DataBind();
             }
             catch (Exception ex)
@@ -37,6 +61,13 @@ namespace CallCenter.Web
                 lblError.Visible = true;
             }
         }
+
+
+        protected void btnBuscarPrioridades_Click(object sender, EventArgs e)
+        {
+            CargarPrioridades();
+        }
+
 
         protected void dgvPrioridades_SelectedIndexChanged(Object sender, EventArgs e)
         {
