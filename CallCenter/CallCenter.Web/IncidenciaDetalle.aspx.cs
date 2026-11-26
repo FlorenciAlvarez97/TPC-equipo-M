@@ -14,32 +14,35 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            btnReasignar.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
-            btnResolver.Enabled = Sesion.EstaLogueado;
-            btnCerrar.Enabled = Sesion.EstaLogueado;
-            btnReabrir.Enabled = Sesion.EstaLogueado && (Sesion.EsSupervisor || Sesion.EsAdministrador);
-            btnGuardarGestion.Enabled = Sesion.EstaLogueado;
-
-            if (!IsPostBack)
+            if (!Sesion.EstaLogueado)
             {
-                Cargarincidencias();
-                cargarresponsables();
-                CargarHistorial();
-
-            }
-
-        }
-
-        private void Cargarincidencias()
-        {
-            int id;
-            if (!int.TryParse(Request.QueryString["id"], out id) || id <= 0)
-            {
-                lblError.Text = "La incidencia solicitada no es válida.";
-                lblError.Visible = true;
+                Response.Redirect("~/Login.aspx", false);
                 return;
             }
+            btnReasignar.Enabled = Sesion.EsSupervisor || Sesion.EsAdministrador;
+            btnResolver.Enabled = true;
+            btnCerrar.Enabled = true;
+            btnReabrir.Enabled = Sesion.EsSupervisor || Sesion.EsAdministrador;
+            btnGuardarGestion.Enabled = true;
+            if (!IsPostBack)
+            {
+                cargarresponsables();
+                if (Cargarincidencias())
+                {
+                    CargarHistorial();
+                }
+            }
+        }
 
+        private bool Cargarincidencias()
+        {
+            int id;
+            if (!int.TryParse(Request.QueryString["id"], out id))
+            {
+                lblError.Text = "Id de incidencia inválido.";
+                lblError.Visible = true;
+                return false;
+            }
             try
             {
                 Incidencia inc = new IncidenciaGestionNegocio().obtenerporid(id);
@@ -47,7 +50,7 @@ namespace CallCenter.Web
                 {
                     lblError.Text = "No se encontró la incidencia solicitada.";
                     lblError.Visible = true;
-                    return;
+                    return false;
                 }
                 txtNumero.Text = inc.Numero.ToString();
                 txtFechaAlta.Text = inc.FechaAlta.ToString("dd/MM/yyyy HH:mm");
@@ -58,16 +61,14 @@ namespace CallCenter.Web
                 txtDescripcion.Text = inc.Descripcion;
                 txtUsuarioAsignado.Text = inc.UsuarioAsignado.Nombre;
                 ddlNuevoResponsable.SelectedValue = inc.UsuarioAsignado.Id.ToString();
-
-
+                return true;
             }
             catch (Exception ex)
             {
-
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 lblError.Text = "Ocurrió un error al cargar la incidencia.";
                 lblError.Visible = true;
-
+                return false;
             }
         }
 
