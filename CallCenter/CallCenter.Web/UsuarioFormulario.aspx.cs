@@ -13,6 +13,8 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Sesion.ExigirAdministrador();
             rfvContrasena.Enabled = Request.QueryString["id"] == null;
 
             if (!IsPostBack)

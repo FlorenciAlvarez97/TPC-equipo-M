@@ -13,6 +13,7 @@ namespace CallCenter.Web
     {
         private int ObtenerIdDesdeUrl()
         {
+
             string idTexto = Request.QueryString["id"]; 
 
             if(idTexto == null)
@@ -37,6 +38,8 @@ namespace CallCenter.Web
         }
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Sesion.ExigirAdministrador();
             if (IsPostBack)
             {
                 return;

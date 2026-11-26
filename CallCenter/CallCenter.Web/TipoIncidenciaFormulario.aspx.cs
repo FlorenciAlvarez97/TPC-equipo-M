@@ -19,6 +19,8 @@ namespace CallCenter.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Sesion.ExigirAdministrador();
             if (!IsPostBack)
             {
                 try

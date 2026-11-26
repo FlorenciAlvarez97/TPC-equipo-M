@@ -37,5 +37,24 @@ namespace CallCenter.Web
             HttpContext.Current.Session.Abandon();
         }
 
+        public static void ExigirLogin()
+        {
+            if (!EstaLogueado)
+            {
+                HttpContext.Current.Response.Redirect("~/Login.aspx");
+            }
+        }
+
+        public static void ExigirAdministrador()
+        {
+            ExigirLogin();
+            if (!EsAdministrador)
+            {
+                HttpContext.Current.Response.Redirect("~/Default.aspx", true);
+            }
+
+
+        }
+
     }
 }
