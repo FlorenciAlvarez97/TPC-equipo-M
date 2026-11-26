@@ -9,7 +9,42 @@
         <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
     </div>
 
-    
+
+
+<div class="mb-4">
+
+    <div class="d-flex gap-3 align-items-end flex-wrap">
+        <div>
+            <asp:Label ID="lblTipoBusqueda" runat="server" AssociatedControlID="ddlTipoBusqueda"  CssClass="form-label" Text="Buscar por" />
+            <asp:DropDownList ID="ddlTipoBusqueda" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Número de reclamo" Value="numero" />
+                <asp:ListItem Text="Cliente" Value="cliente" />
+                <asp:ListItem Text="Tipo de incidencia" Value="tipo" />
+                <asp:ListItem Text="Prioridad" Value="prioridad" />
+                <asp:ListItem Text="Estado" Value="estado" />
+                <asp:ListItem Text="Usuario creador" Value="creador" />
+                <asp:ListItem Text="Usuario asignado" Value="asignado" />
+                <asp:ListItem Text="Último usuario" Value="ultimoUsuario" />
+                <asp:ListItem Text="Fecha de alta" Value="fechaAlta" />
+                <asp:ListItem Text="Última modificación" Value="fechaModificacion" />
+
+
+            </asp:DropDownList>
+        </div>
+
+        <div>
+            <asp:Label ID="lblValorBuscar" runat="server" AssociatedControlID="txtValorBuscar" CssClass="form-label" Text="Valor a buscar" />
+            <asp:TextBox ID="txtValorBuscar" runat="server" CssClass="form-control" placeholder="Ingresá tu búsqueda" />
+        </div>
+
+        <asp:Button ID="btnBuscarNumero" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarNumero_Click" />
+    </div>
+
+    <asp:Label ID="Label1" runat="server" CssClass="text-danger" Visible="false" />
+</div>
+
+    <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="text-danger" Visible="false" />
+
 <div class="table-responsive">
 
     <asp:GridView ID="dgvIncidencias" runat="server" AutoGenerateColumns="false"

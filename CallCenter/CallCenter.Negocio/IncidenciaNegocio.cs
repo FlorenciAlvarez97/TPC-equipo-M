@@ -87,16 +87,15 @@ namespace CallCenter.Negocio
 
 
         public List<Incidencia> Listar()
+
+
         {
             List<Incidencia> lista = new List<Incidencia>();
             AccesoDatos datos = new AccesoDatos();
 
-
-            
-
             try
             {
-                datos.ValidarConsulta( @"SELECT i.Id, i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.IdCliente, c.Nombre AS NombreCliente,
+                datos.ValidarConsulta(@"SELECT i.Id, i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.IdCliente, c.Nombre AS NombreCliente,
                               c.Apellido AS ApellidoCliente, i.IdTipoIncidencia, t.Nombre AS NombreTipo, i.IdPrioridad, p.Nombre AS NombrePrioridad, i.IdEstado, e.Nombre AS NombreEstado,
                               i.IdUsuarioCreador, uc.Nombre AS NombreUsuarioCreador, i.IdUsuarioAsignado, ua.Nombre AS NombreUsuarioAsignado, i.IdUsuarioUltimaModificacion,
                               um.Nombre AS NombreUsuarioUltimaModificacion, (SELECT TOP 1 h.Comentario FROM dbo.HistorialIncidencia h WHERE h.IdIncidencia = i.Id ORDER BY h.Fecha DESC, h.Id DESC)
