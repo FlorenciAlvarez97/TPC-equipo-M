@@ -11,7 +11,12 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            bool logueado = Sesion.EstaLogueado;
+            secClientes.Visible = logueado;
+            secIncidencias.Visible = logueado;
+            secPrioridades.Visible = Sesion.EsAdministrador;
+            secTipos.Visible = Sesion.EsAdministrador;
+            secUsuarios.Visible = Sesion.EsAdministrador;
         }
     }
 }

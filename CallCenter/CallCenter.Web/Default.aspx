@@ -6,7 +6,7 @@
     <h1>Sistema Call Center</h1><p class="lead">Gestión de clientes e incidencias </p>
 
     <div class="row g-4 mb-4">
-        <section class="col-md-4">
+        <section class="col-md-4" runat="server" id="secClientes">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column p-4">
                     <h2 class="card-title">Clientes</h2> 
@@ -16,7 +16,7 @@
            </div>
         </section>
    
-        <section class="col-md-4">
+        <section class="col-md-4" runat="server" id="secIncidencias">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column p-4">
                     <h2 class="card-title">Incidencias</h2> 
@@ -26,7 +26,7 @@
             </div>
         </section>
 
-        <section class="col-md-4">
+        <section class="col-md-4" runat="server" id="secPrioridades">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column p-4">
                     <h2 class="card-title">Prioridades</h2> 
@@ -36,7 +36,7 @@
             </div>
         </section>
 
-        <section class="col-md-4">
+        <section class="col-md-4" runat="server" id="secTipos">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column p-4">
                     <h2 class="card-title">Tipos de incidencia</h2> 
@@ -46,7 +46,7 @@
             </div>
         </section>
 
-        <section class="col-md-4">
+        <section class="col-md-4" runat="server" id="secUsuarios">
             <div class="card h-100">
                 <div class="card-body d-flex flex-column p-4">
                     <h2 class="card-title">Usuarios</h2> 
@@ -58,4 +58,4 @@
     </div>
 </main>
 
-</asp:Content>
+</asp:Content> 
