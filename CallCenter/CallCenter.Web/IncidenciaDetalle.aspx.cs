@@ -397,6 +397,14 @@ namespace CallCenter.Web
                                 return;
                             }
 
+                            bool puedeseguir = Sesion.EsAdministrador || Sesion.EsSupervisor || incidencia.UsuarioAsignado.Id == Sesion.UsuarioId;
+                            if (!puedeseguir)
+                            {
+                                lblError.Text = "No tenés permisos para agregar un seguimiento a esta incidencia.";
+                                lblError.Visible = true;
+                                return;
+                            }
+
                             if (incidencia.Estado.Id == 5)
                             {
                                 lblError.Text = "No se pueden agregar seguimientos a una incidencia cerrada";
