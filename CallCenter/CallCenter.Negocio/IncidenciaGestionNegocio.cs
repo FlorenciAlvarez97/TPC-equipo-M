@@ -24,6 +24,7 @@ namespace CallCenter.Negocio
             inc.cliente.Id = (int)datos.Lector["IdCliente"];
             inc.cliente.Nombre = (string)datos.Lector["NombreCliente"];
             inc.cliente.Apellido = (string)datos.Lector["ApellidoCliente"];
+            inc.cliente.Email = (string)datos.Lector["EmailCliente"];
             inc.Tipo = new TipoIncidencia();
             inc.Tipo.Id = (int)datos.Lector["IdTipoIncidencia"];
             inc.Tipo.Nombre = (string)datos.Lector["NombreTipo"];
@@ -44,7 +45,7 @@ namespace CallCenter.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.ValidarConsulta(@"SELECT i.Id, i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.Resolucion, i.ComentarioCierre, i.IdCliente, c.Nombre AS NombreCliente, c.Apellido AS ApellidoCliente, i.IdTipoIncidencia, t.Nombre AS NombreTipo, i.IdPrioridad, p.Nombre AS NombrePrioridad, i.IdEstado, e.Nombre AS NombreEstado, i.IdUsuarioAsignado, ua.Nombre AS NombreAsignado FROM dbo.Incidencias i INNER JOIN dbo.Clientes c ON c.Id = i.IdCliente INNER JOIN dbo.TiposIncidencia t ON t.Id = i.IdTipoIncidencia INNER JOIN dbo.Prioridades p ON p.Id = i.IdPrioridad INNER JOIN dbo.EstadosIncidencia e ON e.Id = i.IdEstado INNER JOIN dbo.Usuarios ua ON ua.Id = i.IdUsuarioAsignado WHERE i.Id = @Id;");
+                datos.ValidarConsulta(@"SELECT i.Id, i.Numero, i.FechaAlta, i.FechaUltimaModificacion, i.Descripcion, i.Resolucion, i.ComentarioCierre, i.IdCliente, c.Nombre AS NombreCliente, c.Apellido AS ApellidoCliente, c.Email AS EmailCliente, i.IdTipoIncidencia, t.Nombre AS NombreTipo, i.IdPrioridad, p.Nombre AS NombrePrioridad, i.IdEstado, e.Nombre AS NombreEstado, i.IdUsuarioAsignado, ua.Nombre AS NombreAsignado FROM dbo.Incidencias i INNER JOIN dbo.Clientes c ON c.Id = i.IdCliente INNER JOIN dbo.TiposIncidencia t ON t.Id = i.IdTipoIncidencia INNER JOIN dbo.Prioridades p ON p.Id = i.IdPrioridad INNER JOIN dbo.EstadosIncidencia e ON e.Id = i.IdEstado INNER JOIN dbo.Usuarios ua ON ua.Id = i.IdUsuarioAsignado WHERE i.Id = @Id;");
                 datos.SetearParametro("@Id", id);
                 datos.Leer();
                 if (datos.Lector.Read())
