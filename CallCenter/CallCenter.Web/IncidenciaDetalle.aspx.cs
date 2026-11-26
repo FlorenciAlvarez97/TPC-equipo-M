@@ -388,6 +388,11 @@ namespace CallCenter.Web
                                 return;
                             }
 
+                            if (incidencia.Estado.Id == 2 || incidencia.Estado.Id == 6)
+                            {
+                                negocioIncidencia.pasarenanalisis(idIncidencia, Sesion.UsuarioId);
+                            }
+
                             HistorialIncidencia nuevo = new HistorialIncidencia();
 
                             nuevo.Incidencia = incidencia;
@@ -404,6 +409,7 @@ namespace CallCenter.Web
                             // Actualizar el historial que aparece en pantalla
                             dgvHistorial.DataSource = negocioHistorial.ListarPorIncidencia(idIncidencia);
                             dgvHistorial.DataBind();
+                            Cargarincidencias();
 
                             // Limpiar el comentario
                             txtComentarioSeguimiento.Text = "";

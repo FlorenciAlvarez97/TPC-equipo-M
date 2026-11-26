@@ -161,6 +161,23 @@ namespace CallCenter.Negocio
             
         }
 
+        public void pasarenanalisis(int idincidencia, int idusuariomodificado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET IdEstado = 3, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado IN (2, 6);");
+                datos.SetearParametro("@IdUsuarioModifica", idusuariomodificado);
+                datos.SetearParametro("@IdIncidencia", idincidencia);
+                datos.ejecutarAccion();
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+           
+        }
+
 
     }
 }
