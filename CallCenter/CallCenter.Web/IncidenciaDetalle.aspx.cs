@@ -169,7 +169,9 @@ namespace CallCenter.Web
                 }
 
                 negocio.Resolver(idincidencia, resolucion, Sesion.UsuarioId);
+                RegistrarHistorial(idincidencia, resolucion);
                 Cargarincidencias();
+                CargarHistorial();
             }
             catch (Exception ex)
             {
@@ -228,7 +230,9 @@ namespace CallCenter.Web
                 }
 
                 negocio.Cerrar(idincidencia, comentario, Sesion.UsuarioId);
+                RegistrarHistorial(idincidencia, comentario);
                 Cargarincidencias();
+                CargarHistorial();
 
 
             }
@@ -277,7 +281,16 @@ namespace CallCenter.Web
                 }
 
                 negocio.Reabrir(idincidencia, Sesion.UsuarioId);
+
+                string comentarioreapertura = txtComentarioSeguimiento.Text.Trim();
+                if (comentarioreapertura == "")
+                {
+                    comentarioreapertura = "Incidencia reabierta.";
+                }
+
+                RegistrarHistorial(idincidencia, comentarioreapertura);
                 Cargarincidencias();
+                CargarHistorial();
 
 
             }
@@ -435,7 +448,7 @@ namespace CallCenter.Web
         {
             int idIncidencia;
 
-            if (!int.TryParse(Request.QueryString["id"], out idIncidencia)|| idIncidencia <= 0)
+            if (!int.TryParse(Request.QueryString["id"], out idIncidencia) || idIncidencia <= 0)
             {
                 return;
             }
@@ -455,6 +468,18 @@ namespace CallCenter.Web
                 lblError.Text = "No se pudo cargar el historial de seguimientos.";
                 lblError.Visible = true;
             }
+        }
+
+        private void RegistrarHistorial(int idincidencia, string comentario)
+        {
+            HistorialIncidencia historial = new HistorialIncidencia();
+            historial.Incidencia = new Incidencia();
+            historial.Incidencia.Id = idincidencia;
+            historial.Usuario = new Usuario();
+            historial.Usuario.Id = Sesion.UsuarioId;
+            historial.Comentario = comentario;
+            new HistorialIncidenciaNegocio().Agregar(historial);
+
         }
 
 
