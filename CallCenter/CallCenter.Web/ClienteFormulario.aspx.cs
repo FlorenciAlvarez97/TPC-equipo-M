@@ -86,7 +86,15 @@ namespace CallCenter.Web
                 }
                 Response.Redirect("Clientes.aspx", false);
             }
-            catch(Exception ex)
+
+
+            catch (ArgumentException ex)
+            {
+                lblError.Text = Server.HtmlEncode(ex.Message);
+                lblError.Visible = true;
+            }
+
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
                 lblError.Text = "No se pudo guardar el cliente.";

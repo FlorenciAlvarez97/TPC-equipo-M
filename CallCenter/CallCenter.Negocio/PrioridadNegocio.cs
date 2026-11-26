@@ -22,7 +22,7 @@ namespace CallCenter.Negocio
 
             string nombre = prioridad.Nombre.Trim();
 
-            if (nombre.Length > 50)
+            if (nombre.Length > 15)
             {
                 throw new ArgumentException("El nombre no puede superar los 15 caracteres");
             }

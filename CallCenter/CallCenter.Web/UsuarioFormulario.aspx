@@ -25,7 +25,7 @@
                 <asp:DropDownList ID="ddlRol" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                     <asp:ListItem Text="Seleccioná un rol" Value="" Selected="True" />
                 </asp:DropDownList>
-                <asp:RequiredFieldValidator  ID="rfvRol" runat="server" ControlToValidate="ddlRol" InitialValue =" " ErrorMessage="Selecciona un rol" CssClass="text-danger" Display="Dynamic" />
+                <asp:RequiredFieldValidator ID="rfvRol" runat="server" ControlToValidate="ddlRol" InitialValue ="" ErrorMessage="Debés seleccionar un rol" CssClass="text-danger" Display="Dynamic" />
             </div>
             <div class="mb-3">
                 <asp:CheckBox ID="chkActivo" runat="server" Text="Activo" Checked="true" />

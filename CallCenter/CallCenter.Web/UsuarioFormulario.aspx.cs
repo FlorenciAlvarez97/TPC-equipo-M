@@ -32,15 +32,21 @@ namespace CallCenter.Web
                     {
                         Cargausuario(int.Parse(Request.QueryString["id"]));
                     }
+                }
 
-
+                catch (ArgumentException ex)
+                {
+                    lblError.Text = Server.HtmlEncode(ex.Message);
+                    lblError.Visible = true;
                 }
                 catch (Exception ex)
                 {
                     System.Diagnostics.Debug.WriteLine(ex.ToString());
-                    lblError.Text = "No se pudieron cargar los roles.";
+
+                    lblError.Text = "No se pudo cargar el formulario de usuario.";
                     lblError.Visible = true;
                 }
+
             }
 
         }

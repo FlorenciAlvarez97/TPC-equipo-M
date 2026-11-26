@@ -32,8 +32,7 @@ namespace CallCenter.Negocio
 
             if (!string.IsNullOrWhiteSpace(tipo.Descripcion) && tipo.Descripcion.Trim().Length > 300)
             {
-                throw new ArgumentException(
-                    "La descripción no puede superar los 300 caracteres.");
+                throw new ArgumentException("La descripción no puede superar los 300 caracteres.");
             }
 
             return nombre; 
@@ -177,7 +176,7 @@ namespace CallCenter.Negocio
 
             if (ExisteNombre(nombre, tipo.Id))
             {
-                throw new ArgumentException("Ya existe otro el tipo de incidenciacon ese nombre");
+                throw new ArgumentException("Ya existe otro tipo de incidenciacon ese nombre");
             }
 
             AccesoDatos datos = new AccesoDatos();

@@ -61,7 +61,7 @@ namespace CallCenter.Web
 
                 if (prioridad == null)
                 {
-                    throw new ArgumentException("No se encontro la prioridad solicitada");
+                    throw new ArgumentException("No se encontró  la prioridad solicitada");
                 }
 
                 txtNombre.Text = prioridad.Nombre;
@@ -81,7 +81,7 @@ namespace CallCenter.Web
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
 
-                MostrarError("Nos se puedo cargar la prioridad");
+                MostrarError("No se pudo cargar la prioridad");
                 btnGuardar.Enabled=false;
             }
         }
@@ -99,7 +99,7 @@ namespace CallCenter.Web
 
             if (!int.TryParse(txtNivel.Text, out nivel) || nivel <= 0)
             {
-                MostrarError("Ingresá un nivel mayot a cero");
+                MostrarError("Ingresá un nivel mayor a cero");
                 return;
             }
 

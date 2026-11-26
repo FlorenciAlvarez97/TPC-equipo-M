@@ -52,13 +52,15 @@ namespace CallCenter.Web
                 dgvTiposIncidencia.DataBind();
 
             }
+
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
 
-                lblError.Text = Server.HtmlEncode(ex.ToString());
+                lblError.Text = "No se pudieron cargar los tipos de incidencia.";
                 lblError.Visible = true;
             }
+
         }
 
 

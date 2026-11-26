@@ -15,6 +15,9 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            txtDescripcion.Attributes["maxlength"] = "1000";
+
             if (!IsPostBack)
             {
                 pnlUsuarioDemo.Visible = !Sesion.EstaLogueado;

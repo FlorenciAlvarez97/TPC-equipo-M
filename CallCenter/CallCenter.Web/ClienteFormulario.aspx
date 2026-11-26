@@ -32,7 +32,7 @@
 
         <div class= "col-md-12 mb-3">
             <asp:Label ID="lblDireccion" runat="server" Text="Direccion" AssociatedControlID="txtDireccion" CssClass="col-form-label" />
-            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" MaxLength = "150" />
+            <asp:TextBox ID="txtDireccion" runat="server" CssClass="form-control" MaxLength = "100" />
         </div>
 
         <div class= "col-md-12 mb-3">

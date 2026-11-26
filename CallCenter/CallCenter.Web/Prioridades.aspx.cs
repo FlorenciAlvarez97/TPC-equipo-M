@@ -39,13 +39,12 @@ namespace CallCenter.Web
                     lista = lista.Where (p => p.Nombre.IndexOf(busqueda, StringComparison.OrdinalIgnoreCase) >= 0 || (esNivel && p.Nivel == nivel)).ToList();
                 }
 
-                if (estado != "1")
+                if (estado == "1")
                 {
                     lista = lista.Where(P => P.Activo).ToList();
-
                 }
 
-                else if (estado != "0") 
+                else if (estado == "0") 
                 {
                     lista = lista.Where(p => !p.Activo).ToList();
                 }

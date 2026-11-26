@@ -41,12 +41,15 @@ namespace CallCenter.Web
                 dgvClientes.DataBind();
 
             }
+
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
-                lblError.Text = Server.HtmlEncode(ex.ToString());//"No se pudieron cargar los clientes: " + ex.Message;
+
+                lblError.Text = "No se pudieron cargar los clientes.";
                 lblError.Visible = true;
             }
+
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)

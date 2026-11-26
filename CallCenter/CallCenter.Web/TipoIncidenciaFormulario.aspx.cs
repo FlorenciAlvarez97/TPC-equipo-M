@@ -55,11 +55,20 @@ namespace CallCenter.Web
 
                     btnGuardar.Text = "Guardar cambios";
                 }
-                catch (Exception ex)
+
+                catch (ArgumentException ex)
                 {
                     MostrarError(ex.Message);
                     btnGuardar.Enabled = false;
                 }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.ToString());
+
+                    MostrarError("No se pudo cargar el tipo de incidencia.");
+                    btnGuardar.Enabled = false;
+                }
+
             }
         }
 
