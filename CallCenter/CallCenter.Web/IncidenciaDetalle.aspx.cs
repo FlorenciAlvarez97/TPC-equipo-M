@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services.Description;
 
 namespace CallCenter.Web
 {
@@ -172,6 +173,13 @@ namespace CallCenter.Web
                 RegistrarHistorial(idincidencia, resolucion);
                 Cargarincidencias();
                 CargarHistorial();
+
+                string cuerporesuelto = "Hola " + incidencia.cliente.Nombre + " " + incidencia.cliente.Apellido + ",\n\n" + "Tu reclamo Nº " + incidencia.Numero + " fue resuelto.\n\n" + "Resolución: " + resolucion + "\n\n" + "Sistema Call Center";
+                if (!EnviarAviso(incidencia, "Reclamo Nº " + incidencia.Numero + " resuelto", cuerporesuelto))
+                {
+                    lblError.Text = "La incidencia se resolvió, pero no se pudo enviar el correo al cliente.";
+                    lblError.Visible = true;
+                }
             }
             catch (Exception ex)
             {
@@ -233,6 +241,13 @@ namespace CallCenter.Web
                 RegistrarHistorial(idincidencia, comentario);
                 Cargarincidencias();
                 CargarHistorial();
+
+                string cuerpoCerrado = "Hola " + incidencia.cliente.Nombre + " " + incidencia.cliente.Apellido + ",\n\n" + "Tu reclamo Nº " + incidencia.Numero + " fue cerrado.\n\n" + "Comentario de cierre: " + comentario + "\n\n" + "Sistema Call Center";
+                if (!EnviarAviso(incidencia, "Reclamo Nº " + incidencia.Numero + " cerrado", cuerpoCerrado))
+                {
+                    lblError.Text = "La incidencia se cerró, pero no se pudo enviar el correo al cliente.";
+                    lblError.Visible = true;
+                }
 
 
             }
@@ -485,6 +500,27 @@ namespace CallCenter.Web
             historial.Usuario.Id = Sesion.UsuarioId;
             historial.Comentario = comentario;
             new HistorialIncidenciaNegocio().Agregar(historial);
+
+        }
+
+        private bool EnviarAviso(Incidencia incidencia, string asunto, string cuerpo)
+        {
+            try
+            {
+                EmailService servicio = new EmailService();
+                servicio.ArmarCorreo(incidencia.cliente.Email, asunto, cuerpo);
+                servicio.EnviarCorreo();
+                return true;
+
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+                return false;
+            }
+
+
 
         }
 
