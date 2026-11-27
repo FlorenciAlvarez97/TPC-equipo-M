@@ -82,14 +82,20 @@
 
             <Columns>
 
-                <asp:TemplateField HeaderText="Número">
+                <asp:TemplateField HeaderText="ID">
                     <ItemTemplate>
-                        <asp:HyperLink ID="lnkDetalle" runat="server" Text='<%# Eval("Numero") %>' NavigateUrl='<%# "IncidenciaDetalle.aspx?id=" + Eval("Id") %>' CssClass="fw-bold" />
+                        <asp:HyperLink ID="lnkDetalle" runat="server" Text='<%# Eval("Id") %>' NavigateUrl='<%# "IncidenciaDetalle.aspx?id=" + Eval("Id") %>' CssClass="fw-bold" />
                     </ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Cliente">
-                    <ItemTemplate><%#: Eval("cliente.Id") %>  <%# Eval("cliente.Nombre") %> <%# Eval("cliente.Apellido") %></ItemTemplate>
+                    <HeaderStyle CssClass="text-center" />
+                    <ItemStyle CssClass="text-center" />
+                    <ItemTemplate><%#: Eval("cliente.Id") %></ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Nombre">
+                    <ItemTemplate><%# Eval("cliente.Nombre") %> <%# Eval("cliente.Apellido") %></ItemTemplate>
                 </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Tipo">

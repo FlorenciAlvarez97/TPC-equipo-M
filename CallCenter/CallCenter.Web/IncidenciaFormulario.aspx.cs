@@ -15,6 +15,7 @@ namespace CallCenter.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            pnlAviso.Visible = false;
 
             txtDescripcion.Attributes["maxlength"] = "1000";
 
@@ -248,14 +249,17 @@ namespace CallCenter.Web
 
                 if (correoEnviado)
                 {
-                    lblClienteEncontrado.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente. Correo de prueba enviado a Mailtrap.";
+                    lblAviso.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente. Correo enviado";
                 }
                 else
                 {
-                    lblClienteEncontrado.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente, pero no se pudo enviar el correo de prueba.";
+                    lblAviso.Text = "La incidencia Nº " + numeroGenerado + " se guardó correctamente, pero no se pudo enviar el correo.";
+                    pnlAviso.CssClass = "alert alert-warning alert-dismissible fade show shadow";
                 }
 
-                lblClienteEncontrado.Visible = true;
+                lblClienteEncontrado.Text = "";
+                lblClienteEncontrado.Visible = false;
+                pnlAviso.Visible = true;
             }
             catch (ArgumentException ex)
             {
