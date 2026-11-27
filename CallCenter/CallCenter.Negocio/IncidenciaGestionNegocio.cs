@@ -167,7 +167,7 @@ namespace CallCenter.Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.ValidarConsulta("UPDATE dbo.Incidencias SET IdEstado = 3, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado IN (2, 6);");
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET IdEstado = 3, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado IN (1, 2, 6);");
                 datos.SetearParametro("@IdUsuarioModifica", idusuariomodificado);
                 datos.SetearParametro("@IdIncidencia", idincidencia);
                 datos.ejecutarAccion();

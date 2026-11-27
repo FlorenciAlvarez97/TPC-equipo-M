@@ -404,7 +404,8 @@ namespace CallCenter.Web
                                 return;
                             }
 
-                            if (incidencia.Estado.Id == 2 || incidencia.Estado.Id == 6)
+                            bool puede = Sesion.EsAdministrador || Sesion.EsSupervisor || incidencia.UsuarioAsignado.Id == Sesion.UsuarioId;
+                            if (puede && (incidencia.Estado.Id == 1 || incidencia.Estado.Id == 2 || incidencia.Estado.Id == 6))
                             {
                                 negocioIncidencia.pasarenanalisis(idIncidencia, Sesion.UsuarioId);
                             }
