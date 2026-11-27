@@ -5,6 +5,11 @@
             <h1 class="fw-bold mb-1">Nueva incidencia</h1>
             <p class="text-muted mb-0"> Registrá un nuevo reclamo o consulta del cliente. </p>
         </div>
+        <asp:Panel ID="pnlAviso" runat="server" CssClass="alert alert-success alert-dismissible fade show shadow" Style="position: fixed; top: 85px; right: 20px; z-index: 1080; max-width: 430px; width: calc(100% - 40px);" Visible="false" role="alert">
+            
+            <asp:Label ID="lblAviso" runat="server" />
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"> </button>
+        </asp:Panel>
         
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-4 p-md-5">

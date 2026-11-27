@@ -57,6 +57,7 @@
     <div class="table-responsive bg-white border rounded-4 shadow-sm p-3">
         <asp:GridView ID="dgvClientes" runat="server" AutoGenerateColumns="false" CssClass="table table-striped table-hover align-middle mb-0" GridLines="None" ShowHeaderWhenEmpty="true" EmptyDataText="No hay clientes cargados" OnRowCommand="dgvClientes_RowCommand">
             <Columns>
+                <asp:BoundField DataField="Id" HeaderText="ID" />
                 <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
                 <asp:BoundField DataField="Apellido" HeaderText="Apellido" />
                 <asp:BoundField DataField="Email" HeaderText="Email" />
