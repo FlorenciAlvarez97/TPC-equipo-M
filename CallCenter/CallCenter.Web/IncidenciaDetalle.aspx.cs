@@ -169,10 +169,9 @@ namespace CallCenter.Web
                     return;
                 }
 
-                int estado = incidencia.Estado.Id;
-                if (estado != 2 && estado != 3 && estado != 6)
+                if (incidencia.Estado.Id == 4 || incidencia.Estado.Id == 5)
                 {
-                    lblError.Text = "La incidencia no se encuentra en un estado que permita ser resuelta.";
+                    lblError.Text = "La incidencia ya está resuelta o cerrada.";
                     lblError.Visible = true;
                     return;
                 }
@@ -246,9 +245,9 @@ namespace CallCenter.Web
                     return;
                 }
 
-                if (incidencia.Estado.Id != 4)
+                if (incidencia.Estado.Id == 5)
                 {
-                    lblError.Text = "La incidencia no se encuentra en un estado que permita ser cerrada.";
+                    lblError.Text = "La incidencia ya está cerrada.";
                     lblError.Visible = true;
                     return;
                 }
@@ -424,8 +423,7 @@ namespace CallCenter.Web
                                 return;
                             }
 
-                            bool puede = Sesion.EsAdministrador || Sesion.EsSupervisor || incidencia.UsuarioAsignado.Id == Sesion.UsuarioId;
-                            if (puede && (incidencia.Estado.Id == 1 || incidencia.Estado.Id == 2 || incidencia.Estado.Id == 6))
+                            if (incidencia.Estado.Id == 1 || incidencia.Estado.Id == 2 || incidencia.Estado.Id == 6)
                             {
                                 negocioIncidencia.pasarenanalisis(idIncidencia, Sesion.UsuarioId);
                             }
