@@ -33,8 +33,7 @@
 
             <div class="col-12 col-lg-4">
                 <asp:Label ID="lblTipoBusqueda" runat="server" Text="Buscar por" AssociatedControlID="ddlTipoBusqueda" CssClass="form-label" />
-
-                <asp:DropDownList ID="ddlTipoBusqueda" runat="server" CssClass="form-select" Style="max-width: none;">
+               <asp:DropDownList ID="ddlTipoBusqueda" runat="server" CssClass="form-select" Style="max-width: none;" AutoPostBack="true" OnSelectedIndexChanged="ddlTipoBusqueda_SelectedIndexChanged">
 
                     <asp:ListItem Text="Número de reclamo" Value="numero" />
                     <asp:ListItem Text="Cliente" Value="cliente" />
@@ -56,6 +55,7 @@
                 <asp:Label ID="lblValorBuscar" runat="server" Text="Valor a buscar" AssociatedControlID="txtValorBuscar"  CssClass="form-label" />
 
                 <asp:TextBox ID="txtValorBuscar" runat="server" CssClass="form-control" Style="max-width: none;" placeholder="Ingresá tu búsqueda" />
+                <asp:DropDownList ID="ddlValorBuscar" runat="server" CssClass="form-select" Style="max-width: none;" Visible="false"> </asp:DropDownList>
             </div>
 
             <div class="col-12 col-lg-2">

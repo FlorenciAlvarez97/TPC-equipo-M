@@ -153,6 +153,7 @@ namespace CallCenter.Negocio
 
                 return lista;
             }
+
             finally
             {
                 datos.CerrarConexion();
@@ -160,6 +161,37 @@ namespace CallCenter.Negocio
         }
 
 
+        public List<EstadoIncidencia> ListarEstados()
+        {
+            List<EstadoIncidencia> lista = new List<EstadoIncidencia>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.ValidarConsulta( "SELECT Id, Nombre FROM dbo.EstadosIncidencia ORDER BY Id;"
+                );
+
+                datos.Leer();
+
+                while (datos.Lector.Read())
+                {
+                    EstadoIncidencia estado = new EstadoIncidencia();
+
+                    estado.Id = (int)datos.Lector["Id"];
+                    estado.Nombre = (string)datos.Lector["Nombre"];
+
+                    lista.Add(estado);
+                }
+
+                return lista;
+            }
+            finally
+            {
+                datos.CerrarConexion();
+            }
+        }
+    }
+
+
 
     }
-}

@@ -28,6 +28,49 @@ namespace CallCenter.Web
             }
         }
 
+        protected void ddlTipoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tipo = ddlTipoBusqueda.SelectedValue;
+
+            txtValorBuscar.Text = "";
+            ddlValorBuscar.Items.Clear();
+            lblErrorBusqueda.Visible = false;
+
+            bool usarDesplegable = tipo == "tipo" ||tipo == "prioridad" || tipo == "estado";
+
+            txtValorBuscar.Visible = !usarDesplegable;
+            ddlValorBuscar.Visible = usarDesplegable;
+
+            lblValorBuscar.AssociatedControlID = usarDesplegable ? "ddlValorBuscar": "txtValorBuscar";
+
+            if (usarDesplegable)
+            {
+                switch (tipo)
+                {
+                    case "tipo":
+                        TipoIncidenciaNegocio negocioTipos = new TipoIncidenciaNegocio();
+                        ddlValorBuscar.DataSource = negocioTipos.Listar();
+                        break;
+
+                    case "prioridad":
+                        PrioridadNegocio negocioPrioridades = new PrioridadNegocio();
+                        ddlValorBuscar.DataSource = negocioPrioridades.Listar();
+                        break;
+
+                    case "estado":
+                        IncidenciaNegocio negocio = new IncidenciaNegocio();
+                        ddlValorBuscar.DataSource = negocio.ListarEstados();
+                        break;
+                }
+
+                ddlValorBuscar.DataTextField = "Nombre";
+                ddlValorBuscar.DataValueField = "Id";
+                ddlValorBuscar.DataBind();
+
+                ddlValorBuscar.Items.Insert(0,new ListItem("Todas las opciones", ""));
+            }
+        }
+
         protected void btnBuscarNumero_Click(object sender, EventArgs e)
         {
             lblErrorBusqueda.Visible = false;
@@ -58,6 +101,29 @@ namespace CallCenter.Web
                 lista = lista.Where(i => i.Numero == numero).ToList();
             }
 
+            else if (tipo == "tipo" || tipo == "prioridad" || tipo == "estado")
+            {
+                int id;
+
+                if (int.TryParse(ddlValorBuscar.SelectedValue, out id))
+                {
+                    switch (tipo)
+                    {
+                        case "tipo":
+                            lista = lista.Where(i => i.Tipo != null &&  i.Tipo.Id == id).ToList();
+                            break;
+
+                        case "prioridad":
+                            lista = lista.Where(i => i.prioridad != null && i.prioridad.Id == id).ToList();
+                            break;
+
+                        case "estado":
+                            lista = lista.Where(i => i.Estado != null && i.Estado.Id == id).ToList();
+                            break;
+                    }
+                }
+            }
+
             // Otros criterios de búsqueda
             else if (tipo != "todos" && tipo != "numero" && valor != "")
             {
@@ -67,18 +133,6 @@ namespace CallCenter.Web
                 {
                     case "cliente":
                         obtenerDato = i => i.cliente == null ? "" : i.cliente.Id + " " + i.cliente.Nombre + " " + i.cliente.Apellido;
-                        break;
-
-                    case "tipo":
-                        obtenerDato = i => i.Tipo == null ? "" : i.Tipo.Nombre;
-                        break;
-
-                    case "prioridad":
-                        obtenerDato = i =>i.prioridad == null ? "" : i.prioridad.Nombre;
-                        break;
-
-                    case "estado":
-                        obtenerDato = i => i.Estado == null ? "" : i.Estado.Nombre;
                         break;
 
                     case "descripcion":
