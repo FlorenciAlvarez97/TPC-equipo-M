@@ -2,60 +2,92 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <main>
-    <h1>Sistema Call Center</h1><p class="lead">Gestión de clientes e incidencias </p>
-
-    <div class="row g-4 mb-4">
-        <section class="col-md-4" runat="server" id="secClientes">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column p-4">
-                    <h2 class="card-title">Clientes</h2> 
-                    <p class="card-text"> Consultar los clientes y acceder a sus datos de contacto</p>
-                    <a runat="server" href="~/Clientes.aspx" class="btn btn-primary mt-auto align-self-start"> Ir a clientes </a>
-               </div>
-           </div>
-        </section>
    
-        <section class="col-md-4" runat="server" id="secIncidencias">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column p-4">
-                    <h2 class="card-title">Incidencias</h2> 
-                    <p class="card-text"> Acceder a los reclamos y a las pantallas de atención</p>
-                    <a runat="server" href="~/Incidencias.aspx" class="btn btn-primary mt-auto align-self-start"> Ir a incidencias </a>
+
+<main class="py-4">
+
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-dark">
+            Sistema Call Center
+        </h1>
+        <p class="lead text-secondary">
+            Gestión de clientes e incidencias
+        </p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <%-- CLIENTES --%>
+        <section runat="server" id="secClientes">
+            <a runat="server" href="~/Clientes.aspx"
+               class="card dashboard-card h-100 text-decoration-none text-dark" style="min-height: 155px;" > 
+                <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="dashboard-icon">👥</div>
+                    <h2 class="h3 fw-bold mt-3">Clientes</h2>
+                    <p class="fs-5 text-secondary">
+                        Consultar y gestionar clientes.
+                    </p>
                 </div>
-            </div>
+            </a>
         </section>
 
-        <section class="col-md-4" runat="server" id="secPrioridades">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column p-4">
-                    <h2 class="card-title">Prioridades</h2> 
-                    <p class="card-text"> Sección donde mostraremos la lectura de prioridades desde la base de datos</p>
-                    <a runat="server" href="~/Prioridades.aspx" class="btn btn-primary mt-auto align-self-start"> Ir a prioridades </a>
+        <%-- INCIDENCIAS --%>
+        <section runat="server" id="secIncidencias">
+            <a runat="server" href="~/Incidencias.aspx"
+               class="card dashboard-card h-100 text-decoration-none text-dark" style="min-height: 155px;">
+                <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="dashboard-icon">🎧</div>
+                    <h2 class="h3 fw-bold mt-3">Incidencias</h2>
+                    <p class="fs-5 text-secondary">
+                        Consultar y gestionar reclamos.
+                    </p>
                 </div>
-            </div>
+            </a>
         </section>
 
-        <section class="col-md-4" runat="server" id="secTipos">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column p-4">
-                    <h2 class="card-title">Tipos de incidencia</h2> 
-                    <p class="card-text"> Consultar y administrar los tipos de reclamos</p>
-                    <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-primary mt-auto align-self-start"> Ir a tipos de incidencia </a>
+        <%-- PRIORIDADES --%>
+        <section runat="server" id="secPrioridades">
+            <a runat="server" href="~/Prioridades.aspx"
+               class="card dashboard-card h-100 text-decoration-none text-dark" style="min-height: 155px;">
+                <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="dashboard-icon">🚩</div>
+                    <h2 class="h3 fw-bold mt-3">Prioridades</h2>
+                    <p class="fs-5 text-secondary">
+                        Administrar niveles de prioridad.
+                    </p>
                 </div>
-            </div>
+            </a>
         </section>
 
-        <section class="col-md-4" runat="server" id="secUsuarios">
-            <div class="card h-100">
-                <div class="card-body d-flex flex-column p-4">
-                    <h2 class="card-title">Usuarios</h2> 
-                    <p class="card-text"> Consultar y administrar los usuarios del sistema</p>
-                    <a runat="server" href="~/Usuarios.aspx" class="btn btn-primary mt-auto align-self-start"> Ir a usuarios </a>
+        <%-- TIPOS DE INCIDENCIA --%>
+        <section runat="server" id="secTipos">
+            <a runat="server" href="~/TiposIncidencia.aspx"
+               class="card dashboard-card h-100 text-decoration-none text-dark" style="min-height: 155px;">
+                <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="dashboard-icon">📋</div>
+                    <h2 class="h3 fw-bold mt-3">Tipos de incidencia</h2>
+                    <p class="fs-5 text-secondary">
+                        Administrar tipos de reclamos.
+                    </p>
                 </div>
-            </div>
-       </section>
+            </a>
+        </section>
+
+        <%-- USUARIOS --%>
+        <section runat="server" id="secUsuarios">
+            <a runat="server" href="~/Usuarios.aspx"
+               class="card dashboard-card h-100 text-decoration-none text-dark" style="min-height: 155px;">
+                <div class="card-body p-4 text-center d-flex flex-column align-items-center justify-content-center">
+                    <div class="dashboard-icon">👤</div>
+                    <h2 class="h3 fw-bold mt-3">Usuarios</h2>
+                    <p class="fs-5 text-secondary">
+                        Administrar usuarios del sistema.
+                    </p>
+                </div>
+            </a>
+        </section>
     </div>
 </main>
+
 
 </asp:Content> 

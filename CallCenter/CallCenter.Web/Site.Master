@@ -38,15 +38,15 @@
             </Scripts>
         </asp:ScriptManager>
         <div class="cc-layout">
-
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark cc-sidebar">
+            
+            <nav id="menuLateral" runat="server" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark cc-sidebar">
                 <div class="container">
                     <a class="navbar-brand" runat="server" href="~/">Call Center</a>
                     <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Alternar navegación" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item"><a runat="server" href="~/Default.aspx" class="nav-link">Inicio</a></li>
                             <li class="nav-item" runat="server" id="liClientes"><a runat="server" href="~/Clientes.aspx" class="nav-link">Clientes</a></li>
@@ -59,18 +59,17 @@
                 </div>
             </nav>
             <div class="container body-content cc-content">
-                <header class="d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom pb-3 mb-4">
-                    <span>Sistema Call Center</span>
-                    <div class="d-flex align-items-center gap-2">
-                        <asp:Label ID="lblUsuarioActual" runat="server" CssClass="text-muted" />
+                <header id="encabezadoGeneral" runat="server" class="d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom pb-3 mb-4">
+                    <div class="d-flex align-items-center gap-2 w-100" <span style="font-size: 24px;">👤</span>
+                        <asp:Label ID="lblUsuarioActual" runat="server" CssClass="text-muted  fs-5 fw-semibold"/>
                         <a runat="server" id="lnkIngresar" href="~/Login.aspx" class="btn btn-outline-secondary">Ingresar</a>
-                        <asp:LinkButton ID="btnCerrarSesion" runat="server" CssClass="btn btn-outline-secondary" OnClick="btnCerrarSesion_Click" CausesValidation="false" Visible="false">Cerrar sesión</asp:LinkButton>
+                        <asp:LinkButton ID="btnCerrarSesion" runat="server" CssClass="btn btn-outline-secondary btn-lg ms-auto" OnClick="btnCerrarSesion_Click" CausesValidation="false" Visible="false">Cerrar sesión</asp:LinkButton>
                     </div>
                 </header>
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
-                <hr />
-                <footer>
+                <hr id="separadorPie" runat="server" />
+                <footer id="pieGeneral" runat="server">
                     <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
                 </footer>
             </div>

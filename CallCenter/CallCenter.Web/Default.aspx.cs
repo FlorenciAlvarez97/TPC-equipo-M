@@ -17,6 +17,7 @@ namespace CallCenter.Web
             secPrioridades.Visible = Sesion.EsAdministrador;
             secTipos.Visible = Sesion.EsAdministrador;
             secUsuarios.Visible = Sesion.EsAdministrador;
+            Sesion.ExigirLogin();
         }
     }
 }

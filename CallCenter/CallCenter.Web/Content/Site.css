@@ -63,3 +63,95 @@ textarea {
         padding: 24px;
     }
 }
+
+
+/* Nuevo diseño del menú lateral */
+@media (min-width: 576px) {
+    .cc-sidebar {
+        width: 270px;
+        background: linear-gradient(180deg, #0a2c5e, #031d44) !important;
+        padding: 28px 18px;
+    }
+
+        .cc-sidebar .navbar-brand {
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        .cc-sidebar .nav-link {
+            color: #e4edff;
+            font-size: 18px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+            .cc-sidebar .nav-link:hover {
+                background: #1976d2;
+                color: white;
+            }
+}
+
+
+/* TARJETAS DE LA PANTALLA PRINCIPAL */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 24px;
+}
+
+    /* Tres tarjetas en la primera fila */
+    .dashboard-grid > section {
+        grid-column: span 2;
+    }
+
+        /* Dos tarjetas más anchas en la última fila */
+        .dashboard-grid > section:nth-last-child(-n+2) {
+            grid-column: span 3;
+        }
+
+.dashboard-card {
+    min-height: 250px;
+    border: 1px solid #dedede;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.16);
+    }
+
+/* Íconos */
+.dashboard-icon {
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+/* Pantallas medianas */
+@media (max-width: 991px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+        .dashboard-grid > section,
+        .dashboard-grid > section:nth-last-child(-n+2) {
+            grid-column: span 1;
+        }
+}
+
+/* Celulares */
+@media (max-width: 575px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-card {
+        min-height: 200px;
+    }
+}

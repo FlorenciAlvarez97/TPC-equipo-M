@@ -15,6 +15,15 @@ namespace CallCenter.Web
     {
 
         /// <summary>
+        /// Control menuLateral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl menuLateral;
+
+        /// <summary>
         /// Control liClientes.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace CallCenter.Web
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUsuarios;
 
         /// <summary>
+        /// Control encabezadoGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl encabezadoGeneral;
+
+        /// <summary>
         /// Control lblUsuarioActual.
         /// </summary>
         /// <remarks>
@@ -94,5 +112,23 @@ namespace CallCenter.Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+
+        /// <summary>
+        /// Control separadorPie.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl separadorPie;
+
+        /// <summary>
+        /// Control pieGeneral.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl pieGeneral;
     }
 }

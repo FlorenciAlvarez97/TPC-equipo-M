@@ -11,9 +11,10 @@ namespace CallCenter.Web
 {
     public partial class Login : System.Web.UI.Page
     {
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnIngresar_Click(Object sender, EventArgs e)
@@ -31,6 +32,8 @@ namespace CallCenter.Web
 
                 Session["UsuarioId"] = usuario.Id;
                 Session["RolId"] = usuario.Rol.Id;
+                Session["UsuarioNombre"] = usuario.Nombre;
+
                 Response.Redirect("~/Default.aspx", false);
             }
             catch (Exception ex)
