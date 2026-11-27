@@ -86,9 +86,22 @@ namespace CallCenter.Web
             {
                 try
                 {
+                    lblError.Visible = false;
                     int id = int.Parse(e.CommandArgument.ToString());
                     UsuarioNegocio negocio = new UsuarioNegocio();
                     Usuario usuario = negocio.ObtenerPorId(id);
+                    if (usuario == null)
+                    {
+                        lblError.Text = "No se encontró el usuario.";
+                        lblError.Visible = true;
+                        return;
+                    }
+                    if (usuario.Id == Sesion.UsuarioId && usuario.Activo)
+                    {
+                        lblError.Text = "No podés desactivar tu propio usuario.";
+                        lblError.Visible = true;
+                        return;
+                    }
                     negocio.CambiarEstado(id, !usuario.Activo);
                     Cargarusuarios();
                 }
