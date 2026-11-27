@@ -1,56 +1,85 @@
 ﻿<%@ Page Title="Incidencias" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Incidencias.aspx.cs" Inherits="CallCenter.Web.Incidencias" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <h1>Incidencias</h1>
-    <p> </p>
+    
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-    <div class="mb-3">
-        <a runat="server" href="~/IncidenciaFormulario.aspx" class="btn btn-primary">Nueva incidencia</a>
-      <%--  <a runat="server" href="~/IncidenciaDetalle.aspx" class="btn btn-outline-primary">Ver detalle</a> --%>
-        <a runat="server" href="~/Default.aspx" class="btn btn-secondary">Volver al inicio</a>
+    <div>
+        <h1 class="fw-bold mb-1">Incidencias</h1>
+        <p class="text-muted mb-0">
+            Consultá y gestioná los reclamos registrados.
+        </p>
     </div>
 
+    <div class="d-flex gap-2">
+        <a runat="server" href="~/IncidenciaFormulario.aspx" class="btn btn-primary">
+            Nueva incidencia
+        </a>
 
-
-<div class="mb-4">
-
-    <div class="d-flex gap-3 align-items-end flex-wrap">
-        <div>
-            <asp:Label ID="lblTipoBusqueda" runat="server" AssociatedControlID="ddlTipoBusqueda"  CssClass="form-label" Text="Buscar por" />
-            <asp:DropDownList ID="ddlTipoBusqueda" runat="server" CssClass="form-select">
-                <asp:ListItem Text="Número de reclamo" Value="numero" />
-                <asp:ListItem Text="Cliente" Value="cliente" />
-                <asp:ListItem Text="Tipo de incidencia" Value="tipo" />
-                <asp:ListItem Text="Prioridad" Value="prioridad" />
-                <asp:ListItem Text="Estado" Value="estado" />
-                <asp:ListItem Text="Descripción" Value="descripcion" />
-                <asp:ListItem Text="Último seguimiento" Value="seguimiento" />
-                <asp:ListItem Text="Usuario creador" Value="creador" />
-                <asp:ListItem Text="Usuario asignado" Value="asignado" />
-                <asp:ListItem Text="Último usuario" Value="ultimoUsuario" />
-                <asp:ListItem Text="Fecha de alta" Value="fechaAlta" />
-                <asp:ListItem Text="Última modificación" Value="fechaModificacion" />
-
-
-            </asp:DropDownList>
-        </div>
-
-        <div>
-            <asp:Label ID="lblValorBuscar" runat="server" AssociatedControlID="txtValorBuscar" CssClass="form-label" Text="Valor a buscar" />
-            <asp:TextBox ID="txtValorBuscar" runat="server" CssClass="form-control" placeholder="Ingresá tu búsqueda" />
-        </div>
-
-        <asp:Button ID="btnBuscarNumero" runat="server" Text="Buscar" CssClass="btn btn-primary" OnClick="btnBuscarNumero_Click" />
+        <a runat="server" href="~/Default.aspx" class="btn btn-secondary">
+            Volver al inicio
+        </a>
     </div>
 
-    <asp:Label ID="Label1" runat="server" CssClass="text-danger" Visible="false" />
+</div>
+
+<div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-body p-4">
+
+        <h2 class="h5 fw-semibold mb-3">
+            Buscar incidencias
+        </h2>
+
+        <div class="row g-3 align-items-end">
+
+            <div class="col-12 col-lg-4">
+                <asp:Label ID="lblTipoBusqueda" runat="server" Text="Buscar por" AssociatedControlID="ddlTipoBusqueda" CssClass="form-label" />
+
+                <asp:DropDownList ID="ddlTipoBusqueda" runat="server" CssClass="form-select" Style="max-width: none;">
+
+                    <asp:ListItem Text="Número de reclamo" Value="numero" />
+                    <asp:ListItem Text="Cliente" Value="cliente" />
+                    <asp:ListItem Text="Tipo de incidencia" Value="tipo" />
+                    <asp:ListItem Text="Prioridad" Value="prioridad" />
+                    <asp:ListItem Text="Estado" Value="estado" />
+                    <asp:ListItem Text="Descripción" Value="descripcion" />
+                    <asp:ListItem Text="Último seguimiento" Value="seguimiento" />
+                    <asp:ListItem Text="Usuario creador" Value="creador" />
+                    <asp:ListItem Text="Usuario asignado" Value="asignado" />
+                    <asp:ListItem Text="Último usuario" Value="ultimoUsuario" />
+                    <asp:ListItem Text="Fecha de alta" Value="fechaAlta" />
+                    <asp:ListItem Text="Última modificación" Value="fechaModificacion" />
+
+                </asp:DropDownList>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <asp:Label ID="lblValorBuscar" runat="server" Text="Valor a buscar" AssociatedControlID="txtValorBuscar"  CssClass="form-label" />
+
+                <asp:TextBox ID="txtValorBuscar" runat="server" CssClass="form-control" Style="max-width: none;" placeholder="Ingresá tu búsqueda" />
+            </div>
+
+            <div class="col-12 col-lg-2">
+                <asp:Button ID="btnBuscarNumero"
+                    runat="server"
+                    Text="Buscar"
+                    CssClass="btn btn-primary w-100"
+                    Style="max-width: none;"
+                    OnClick="btnBuscarNumero_Click"
+                    CausesValidation="false" />
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
     <asp:Label ID="lblErrorBusqueda" runat="server" CssClass="text-danger" Visible="false" />
+    
+    <div class="table-responsive bg-white border rounded-4 shadow-sm p-3">
 
-<div class="table-responsive">
 
-    <asp:GridView ID="dgvIncidencias" runat="server" AutoGenerateColumns="false"
-        CssClass="table table-striped table-bordered table-hover" DataKeyNames="Id"  GridLines="None" EmptyDataText="No hay incidencias registradas">
+    <asp:GridView ID="dgvIncidencias" runat="server" AutoGenerateColumns="false" Style="min-width: 1350px;"
+        CssClass="table table-striped table-hover align-middle mb-0" DataKeyNames="Id"  GridLines="None" EmptyDataText="No hay incidencias registradas">
 
         <Columns>
 
