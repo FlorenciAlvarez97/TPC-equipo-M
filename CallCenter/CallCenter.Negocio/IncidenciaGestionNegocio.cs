@@ -112,7 +112,7 @@ namespace CallCenter.Negocio
             try
             {
 
-                datos.ValidarConsulta("UPDATE dbo.Incidencias SET Resolucion = @Resolucion, IdEstado = 4, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado IN (2, 3, 6);");
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET Resolucion = @Resolucion, IdEstado = 4, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado NOT IN (4, 5);");
                 datos.SetearParametro("@Resolucion", resolucion);
                 datos.SetearParametro("@IdUsuarioModifica", idusuariomodifica);
                 datos.SetearParametro("@IdIncidencia", idincidencia);
@@ -133,7 +133,7 @@ namespace CallCenter.Negocio
 
             try
             {
-                datos.ValidarConsulta("UPDATE dbo.Incidencias SET ComentarioCierre = @ComentarioCierre, IdEstado = 5, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado = 4;");
+                datos.ValidarConsulta("UPDATE dbo.Incidencias SET ComentarioCierre = @ComentarioCierre, IdEstado = 5, FechaUltimaModificacion = GETDATE(), IdUsuarioUltimaModificacion = @IdUsuarioModifica WHERE Id = @IdIncidencia AND IdEstado <> 5;");
                 datos.SetearParametro("@ComentarioCierre", comentariocierre);
                 datos.SetearParametro("@IdUsuarioModifica", idusuariomodificado);
                 datos.SetearParametro("@IdIncidencia", idincidencia);
