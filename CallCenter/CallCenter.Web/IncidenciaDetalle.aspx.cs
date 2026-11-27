@@ -143,6 +143,13 @@ namespace CallCenter.Web
                 return;
             }
 
+            if (resolucion.Length > 1000)
+            {
+                lblError.Text = "La resolución no puede superar los 1000 caracteres.";
+                lblError.Visible = true;
+                return;
+            }
+
             try
             {
                 IncidenciaGestionNegocio negocio = new IncidenciaGestionNegocio();
@@ -211,6 +218,14 @@ namespace CallCenter.Web
                 lblError.Visible = true;
                 return;
             }
+
+            if (comentario.Length > 1000)
+            {
+                lblError.Text = "El comentario de cierre no puede superar los 1000 caracteres.";
+                lblError.Visible = true;
+                return;
+            }
+
 
             try
             {
@@ -296,14 +311,19 @@ namespace CallCenter.Web
                     return;
                 }
 
-                negocio.Reabrir(idincidencia, Sesion.UsuarioId);
-
                 string comentarioreapertura = txtComentarioSeguimiento.Text.Trim();
                 if (comentarioreapertura == "")
                 {
                     comentarioreapertura = "Incidencia reabierta.";
                 }
+                if (comentarioreapertura.Length > 1000)
+                {
+                    lblError.Text = "El comentario no puede superar los 1000 caracteres.";
+                    lblError.Visible = true;
+                    return;
+                }
 
+                negocio.Reabrir(idincidencia, Sesion.UsuarioId);
                 RegistrarHistorial(idincidencia, comentarioreapertura);
                 Cargarincidencias();
                 CargarHistorial();
