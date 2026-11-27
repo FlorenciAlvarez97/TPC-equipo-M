@@ -18,14 +18,50 @@ namespace CallCenter.Web
             Sesion.ExigirLogin();
             if (!IsPostBack)
             {
+                CargarUsuariosBusqueda();
                 IncidenciaNegocio negocio = new IncidenciaNegocio();
-
                 List<Incidencia> lista = negocio.Listar();
-               
                 dgvIncidencias.DataSource = lista;
-
                 dgvIncidencias.DataBind();
             }
+            ActualizarControlesBusqueda();
+
+        }
+
+
+        private void CargarUsuariosBusqueda()
+        {
+            try
+            {
+                ddlUsuarioBuscar.DataSource = new UsuarioNegocio().Listar();
+                ddlUsuarioBuscar.DataTextField = "Nombre";
+                ddlUsuarioBuscar.DataValueField = "Id";
+                ddlUsuarioBuscar.DataBind();
+                ddlUsuarioBuscar.Items.Insert(0, new ListItem("Todos los usuarios", ""));
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+
+        private bool Buscarporsuario()
+        {
+            string tipo = ddlTipoBusqueda.SelectedValue;
+            return tipo == "creador" || tipo == "asignado" || tipo == "ultimoUsuario";
+        }
+
+        private void ActualizarControlesBusqueda()
+        {
+            bool porUsuario = Buscarporsuario();
+            ddlUsuarioBuscar.Visible = porUsuario;
+            txtValorBuscar.Visible = !porUsuario;
+        }
+
+        protected void ddlTipoBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ActualizarControlesBusqueda();
         }
 
         protected void btnBuscarNumero_Click(object sender, EventArgs e)
@@ -33,7 +69,7 @@ namespace CallCenter.Web
             lblErrorBusqueda.Visible = false;
 
             string tipo = ddlTipoBusqueda.SelectedValue;
-            string valor = txtValorBuscar.Text.Trim();
+            string valor = Buscarporsuario() ? (ddlUsuarioBuscar.SelectedValue == "" ? "" : ddlUsuarioBuscar.SelectedItem.Text) : txtValorBuscar.Text.Trim();
 
             // Recuperar las incidencias
             IncidenciaNegocio negocio = new IncidenciaNegocio();
