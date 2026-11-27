@@ -3,16 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 
-    <h1>Tipo de incidencia</h1>
-
+    <h1 class="text-center mb-4 mt-5">Tipo de incidencia</h1>
        <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" />
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="row justify-content-center mt-5"><div 
+        class="col-12" style="max-width: 310px;">
             <asp:Label ID="lblNombre" runat="server" AssociatedControlID="txtNombre" CssClass="form-label" Text="Nombre" />
             <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" MaxLength= "50" />
             <asp:RequiredFieldValidator ID="rfvNombre" runat="server" ControlToValidate="txtNombre" ErrorMessage="El nombre es obligatorio" CssClass="text-danger"  Display="Dynamic" />
-        </div>
+        
 
         <div class="mb-3">
             <asp:Label ID="lblDescripcion" runat="server" AssociatedControlID="txtDescripcion" CssClass="form-label" Text="Descripción" />
@@ -28,4 +27,5 @@
              <a runat="server" href="~/TiposIncidencia.aspx" class="btn btn-secondary"> Cancelar </a>
          </div>
     </div>
+</div>
 </asp:Content>
